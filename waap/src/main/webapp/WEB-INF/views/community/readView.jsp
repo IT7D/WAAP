@@ -125,11 +125,11 @@
               </td>
             </tr>
             <tr>
-              <th scope="col" class="col-1 bg-light text-center">첨부파일
+              <th scope="col" class="col-1 bg-light text-center align-middle" style="font-size: 12px;" >첨부파일
                 <td colspan="11">
                   <c:forEach var="file" items="${file}">
-								    <a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
-							    </c:forEach>
+					  <a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
+				  </c:forEach>
                 </td>
               </th>
             </tr>
@@ -143,13 +143,13 @@
         <c:if test="${memberInfo.member_id == read.member_id || memberInfo.member_id == 'admin' }">
           <button
             type="submit"
-            class="update_btn btn-outline-secondary btn-sm mr-2"
+            class="update_btn btn btn-outline-secondary btn-sm mr-2"
           >
             수정
           </button>
           <button
             type="submit"
-            class="delete_btn btn-outline-secondary btn-sm mr-2"
+            class="delete_btn btn btn-outline-secondary btn-sm mr-2"
           >
             삭제
           </button>
@@ -158,7 +158,7 @@
         <div class="d-flex justify-content-center">
           <button
             type="submit"
-            class="list_btn btn-outline-secondary btn-sm mr-2"
+            class="list_btn btn btn-outline-secondary btn-sm mr-2"
           >
             목록
           </button>
@@ -216,7 +216,7 @@
 	                <div class="d-flex justify-content-end">
 	                  <button
 	                    type="button"
-	                    class="replyWriteBtn btn-outline-secondary btn-sm mt-3"
+	                    class="replyWriteBtn btn btn-outline-secondary btn-sm mt-3"
 	                  >
 	                    작성
 	                  </button>
@@ -225,15 +225,5 @@
 	        </div>
       </form> 
     <!-- 댓글 끝 -->
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>

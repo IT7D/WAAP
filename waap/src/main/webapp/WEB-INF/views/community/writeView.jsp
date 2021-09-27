@@ -126,6 +126,8 @@
 			}
 		}
 		
+		})
+		
 		function fn_addFile(){
 			var fileIndex = 1;
 			$(".fileAdd_btn").on("click", function(){
@@ -137,7 +139,7 @@
 			});
 		}
 		
-		})
+		
 	</script>
   <body>
     <!-- 타이틀, 제목입력창 -->
@@ -160,7 +162,7 @@
 	        </div>
 	        <button
 	        type="button"
-	        class="fileAdd_btn btn-outline-secondary btn-sm mr-4 mt-5"
+	        class="fileAdd_btn btn btn-outline-secondary btn-sm mr-4 mt-5"
 	      	>
 	        파일추가
 	      </button>
@@ -179,13 +181,13 @@
 	          
 	          <button
 	            type="submit"
-	            class="write_btn btn-outline-secondary btn-sm mr-4 mt-5"
+	            class="write_btn btn btn-outline-secondary btn-sm mr-4 mt-5"
 	          >
 	            등록
 	          </button>
 	          <button
 	            type="button"
-	            class="list_btn btn-outline-secondary btn-sm mr-4 mt-5"
+	            class="list_btn btn btn-outline-secondary btn-sm mr-4 mt-5"
 	          >
 	            취소
 	          </button>

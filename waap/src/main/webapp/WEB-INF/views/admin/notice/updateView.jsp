@@ -4,16 +4,23 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 <html>
-	<head>
-		<!-- 합쳐지고 최소화된 최신 CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	
-		<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-	 	<title>커뮤니티</title>
-	</head>
-	<script type="text/javascript">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>공지사항 수정페이지</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/8a5f5e4107.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
@@ -40,19 +47,17 @@
 				formObj.attr("method", "post");
 				formObj.submit();
 			})
-			
-			
-		})
-			
+		
 		function fn_valiChk(){
 			var updateForm = $("form[name='updateForm'] .chk").length;
 			for(var i = 0; i<updateForm; i++){
 				if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
-					alert($(".chk").eq(i).attr("title"));
+					alert($(".chk").eq(i).attr("placeholder"));
 					return true;
 				}
 			}
 		}
+		})
 		
 		function fn_addFile(){
 			var fileIndex = 1;
@@ -76,65 +81,90 @@
  		}
 		
 	</script>
-	<body>
-		<div id="root">
-			<header>
-				<h1>공지사항</h1>
-			</header>
-			 
-			 <a href="${contextPath}/notice/list.do">목록</a>
-			 <a href="${contextPath}/admin/notice/writeView.do">글 작성</a>
-			 
-			<section id="container">
-				<form name="updateForm" role="form" method="post" action="${contextPath}/admin/notice/update.do" enctype="multipart/form-data">
-					<input type="hidden" name="notice_no" value="${update.notice_no}" readonly="readonly"/>
-					<input type="hidden" id="fileNoDel" name="fileNoDel[]" value="">
-					<input type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
-					<table>
-						<tbody>
-							<tr>
-								<td>
-									<label for="notice_title">제목</label><input type="text" id="notice_title" name="notice_title" value="${update.notice_title}" class="chk" title="제목을 입력하세요."/>
-								</td>
-							</tr>	
-							<tr>
-								<td>
-									<label for="notice_cont">내용</label><textarea id="notice_cont" name="notice_cont" class="chk" title="내용을 입력하세요."><c:out value="${update.notice_cont}" /></textarea>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="member_id">작성자</label><input type="text" id="member_id" name="member_id" value="관리자" readonly="readonly"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="regdate">작성날짜</label>
-									<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/>					
-								</td>
-							</tr>
-							<tr>
-								<td id="fileIndex">
-									<c:forEach var="file" items="${file}" varStatus="var">
-									<div>
-										<input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}" value="${file.FILE_NO }">
-										<input type="hidden" id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
-										<a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)
-										<button id="fileDel" onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');" type="button">삭제</button><br>
-									</div>
-									</c:forEach>
-								</td>
-							</tr>		
-						</tbody>			
-					</table>
-					<div>
-						<button type="button" class="update_btn">저장</button>
-						<button type="button" class="cancel_btn">취소</button>
-						<button type="button" class="fileAdd_btn">파일추가</button>
-					</div>
-				</form>
-			</section>
-			<hr />
-		</div>
-	</body>
+  <body>
+    <div class="container">
+      <!-- 제목 -->
+      <h2 class="font-weight-bold text-center mt-5 mb-3">
+        공지사항 수정페이지
+      </h2>
+      <!-- 제목 끝 -->
+
+      <!-- 메인 테이블 시작 -->
+      <form name="updateForm" role="form" method="post" action="${contextPath}/admin/notice/update.do" enctype="multipart/form-data">
+        <input type="hidden" id="fileNoDel" name="fileNoDel[]" value="">
+        <input type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
+      	<input type="hidden" id="notice_no" name="notice_no" value="${update.notice_no}">
+      <div class="container">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col-1" class="bg-light text-center align-middle">번호</th>
+                <td scope="col-1">${update.notice_no}</td>
+                <th scope="col-1" class="bg-light text-center align-middle">작성자</th>
+                <td scope="col-3">${update.member_id}</td>
+                <th scope="col-1" class="bg-light text-center align-middle">작성일</th>
+                <td scope="col-2"><fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/></td>
+                <th scope="col-1" class="bg-light text-center align-middle">조회수</th>
+                <td scope="col-2">${update.view_count}</td>
+              </tr>
+              <tr>
+                <th scope="col" class="bg-light text-center align-middle">제목</th>
+                <td scope="col" colspan="11"> <input type="text" id="notice_title" name="notice_title" class="chk form-control" value="${update.notice_title}" placeholder="제목을 입력하세요." /></td>
+              </tr>
+            </thead>
+            <tbody>
+              <td colspan="12" style="height: 350px"><textarea id="notice_cont" name="notice_cont" class="chk form-control" placeholder="내용을 입력하세요."><c:out value="${update.notice_cont}" /></textarea></td>
+            </tbody>
+            <tr>
+              <th scope="col" class="col-1 bg-light text-center">첨부파일
+                <td colspan="11">
+                    <div id="fileIndex" class="form-group" style="border: 1px solid #dbdbdb;">	
+                 		<c:forEach var="file" items="${file}" varStatus="var">
+                        <div>
+                              <input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}" value="${file.FILE_NO }">
+                              <input type="hidden" id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
+                              <a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)
+                              <button class="fileDel" onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');" type="button" >삭제</button><br>
+                         </div>
+                         </c:forEach>
+                    </div>
+                </td>
+              </th>
+            </tr>
+          </table>
+        </div>
+      </div>
+     </form>
+    </div>
+      <!-- 메인 테이블 끝 -->
+
+      <!-- 목록, 수정, 삭제 버튼 -->
+      <div class="container">
+        <div class="d-flex justify-content-end">
+          <button
+            type="button"
+            class="update_btn btn btn-outline-secondary btn-sm mr-2"
+          >
+            저장
+          </button>
+          <button
+            type="button"
+            class="cancel_btn btn btn-outline-secondary btn-sm mr-2"
+          >
+            취소
+          </button>
+         
+        
+          <button
+          type="button"
+          class="fileAdd_btn btn btn-outline-secondary btn-sm mr-2"
+        >
+          파일추가
+        </button>  
+      </div>
+      </div>
+      <!-- 목록, 수정, 삭제 버튼 끝 -->
+
+  </body>
 </html>

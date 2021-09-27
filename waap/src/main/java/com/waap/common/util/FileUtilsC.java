@@ -17,7 +17,7 @@ import com.waap.community.vo.CommunityVO;
 
 @Component("fileUtils")
 public class FileUtilsC {
-	private static final String filePath = "C:\\community\\file\\"; // 파일이 저장될 위치
+	private static final String filePath = "D:\\waap_project_file\\community\\file\\"; // 파일이 저장될 위치
 	
 	public List<Map<String, Object>> parseInsertFileInfo(CommunityVO communityVO, 
 			MultipartHttpServletRequest mpRequest) throws Exception{

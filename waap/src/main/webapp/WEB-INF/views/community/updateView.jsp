@@ -3,12 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>커뮤니티 상세페이지</title>
+    <title>커뮤니티 수정페이지</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
@@ -49,18 +49,19 @@
 			})
 			
 			
-		})
+		
 			
 		function fn_valiChk(){
 			var updateForm = $("form[name='updateForm'] .chk").length;
 			for(var i = 0; i<updateForm; i++){
 				if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
-					alert($(".chk").eq(i).attr("title"));
+					alert($(".chk").eq(i).attr("placeholder"));
 					return true;
 				}
 			}
 		}
-		
+		})
+			
 		function fn_addFile(){
 			var fileIndex = 1;
 			$(".fileAdd_btn").on("click", function(){
@@ -80,6 +81,7 @@
  			$("#fileNoDel").attr("value", fileNoArry);
  			$("#fileNameDel").attr("value", fileNameArry);
  		}
+		
 		
 	</script>
   </head>
@@ -113,14 +115,14 @@
               <tr>
                 <th scope="col" class="col-1 bg-light text-center align-middle">제목</th>
                 <td scope="col" colspan="11">
-                    <input type="text" id="com_title" name="com_title" class="form-control" value="${update.com_title}" />
+                    <input type="text" id="com_title" name="com_title" class="chk form-control" value="${update.com_title}" placeholder="제목을 입력하세요." />
                 </td>
               </tr>
             </thead>
             <tbody>
               <tr>
               <td colspan="12" style="height: 350px">
-                <textarea id="com_content" name="com_content" class="form-control" ><c:out value="${update.com_content}" /></textarea>
+                <textarea id="com_content" name="com_content" class="chk form-control" placeholder="내용을 입력하세요."><c:out value="${update.com_content}" /></textarea>
               </td>
             </tr>
             <tr>
@@ -143,24 +145,15 @@
           </table>
         </div>
         	<div>
-                <button type="button" class="update_btn btn-outline-secondary btn-sm mr-2">저장</button>
-                <button type="button" class="cancel_btn btn-outline-secondary btn-sm mr-2">취소</button>
-                <button type="button" class="fileAdd_btn btn-outline-secondary btn-sm mr-2">파일추가</button>
+                <button type="button" class="update_btn btn btn-outline-secondary btn-sm mr-2">저장</button>
+                <button type="button" class="cancel_btn btn btn-outline-secondary btn-sm mr-2">취소</button>
+                <button type="button" class="fileAdd_btn btn btn-outline-secondary btn-sm mr-2">파일추가</button>
             </div>
       </div>
  			  
      
     </form>
 </div>	
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-      crossorigin="anonymous"
-    ></script>
+  
   </body>
 </html>

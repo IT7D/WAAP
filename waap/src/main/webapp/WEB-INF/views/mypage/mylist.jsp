@@ -17,77 +17,327 @@
 			</style>
 	</head>
 	
-	<body>
-		<div id="root">
-			<header>
-				<h1>내가 쓴 글 목록</h1>
-			</header>
-		<section id="container">
-				<form role="form" method="get">
-					<table class="table table-hover">
-						<tr><th>번호</th><th>제목</th><th>작성된 날짜</th><th>수정된 날짜</th></tr>		
-						<c:forEach items="${list}" var = "list">
-						<c:if test="${memberInfo.member_id == list.member_id}">
-							<tr>
-								<td><c:out value="${list.com_no}" /></td>
-								<td><a href="${contextPath}/community/readView.do?com_no=${list.com_no}"><c:out value="${list.com_title}" /></a></td>
-								<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
-								<td><fmt:formatDate value="${list.modifydate}" pattern="yyyy-MM-dd"/></td>
-							</tr>
-						</c:if>
-						</c:forEach>
-					</table>
-					
-					<div class="search row">
-						<div class="col-xs-2 col-sm-2">
-						    <select name="searchType" class="form-control">
-						      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>검색조건</option>
-						      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
-						      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-						      <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-						      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-						    </select>
-						</div>
-						
-						<div class="col-xs-4 col-sm-4">
-							<div class="input-group">
-							    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
-								<span class="input-group-btn">
-							    	<button id="searchBtn" type="button" class="btn btn-default">검색</button>
-							    </span>
-						    </div>
-					    </div>
-					    
-					    <script>
-					      $(function(){
-					        $('#searchBtn').click(function() {
-					          self.location = "${contextPath}/mypage/mylist.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-					        });
-					      });   
-					    </script>
-					 </div>
-					 
-					<div class="col-md-offset-3">
-					  <ul class="pagination">
-					    <c:if test="${pageMaker.prev}">
-					    	<li><a href="${contextPath}/mypage/mylist.do${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-					    </c:if> 
-					
-					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-					    	<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
-					    	<a href="${contextPath}/mypage/mylist.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
-					    </c:forEach>
-					
-					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					    	<li><a href="${contextPath}/mypage/mylist.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-					    </c:if>
-					  </ul>
-					</div>
-					
-					
-				</form>
-			</section>
-			<hr />
-		</div>
-	</body>
+	 <body>
+    <div class="container d-flex justify-content-center mt-5">
+      <span class="border py-3">
+        <form name="frm_list_member" id="listForm">
+          <div class="container">
+            <!-- 아이디 그룹 -->
+            <div class="form-group">
+              <div class="form-row">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary col-2"
+                  disabled
+                >
+                  아이디
+                </button>
+                <!-- 아이디 데이터 -->
+                <div class="col-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="member_id"
+                    name="member_id"
+                    value="${memberInfo.member_id}"
+                    readonly
+                  />
+                  <div id="id_check_message"></div>
+                </div>
+                
+              </div>
+            </div>
+            <!-- 아이디 그룹 끝 -->
+            <!-- 비밀번호 그룹 -->
+            <div class="form-group">
+              <div class="form-row">
+              <button
+                type="button"
+                class="btn btn-outline-secondary col-2"
+                disabled
+              >
+                변경 비밀번호
+              </button>
+              <!-- 비밀번호 데이터 -->
+              <div class="col-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="member_pw"
+                  name="member_pw"
+                  value="${memberInfo.member_pw}"
+                  size="20"
+                />
+                <div id="pw_check_message"></div>
+              </div>
+              <button
+                type="button"
+                class="btn btn-outline-secondary col-3"
+                disabled
+              >
+                변경 비밀번호 재확인
+              </button>
+              <!-- 비밀번호 재확인 데이터 -->
+              <div class="col-3">
+                <label class="sr-only" for="inlineFormInputName"></label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="member_pw_check"
+                  name="member_pw_check"
+                  size="20"
+                />
+                <div id="pw_check_message2"></div>
+              </div>
+            </div>
+            </div>
+            <!-- 비밀번호 그룹 끝 -->
+            <!-- 이름 그룹 -->
+            <div class="form-group">
+              <div class="form-row">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary col-2"
+                  disabled
+                >
+                  이름
+                </button>
+              <!-- 이름 데이터 -->
+              <div class="col-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id=""
+                  name="member_name"
+                  value="${memberInfo.member_name}"  readonly
+                />
+              </div>
+              </div>
+            </div>
+            <!-- 이름 그룹 끝 -->
+            <!-- 성별 그룹 -->
+            <fieldset class="form-group">
+              <div class="form-row">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary col-2"
+                  disabled
+                >
+                  성별
+                </button>
+              
+
+              <div class="col-3 d-flex justify-content-center align-items-center ">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="member_gender"
+                    value="남"
+                    checked
+                  />
+                  <label class="form-check-label" for="gridRadios1">
+                    남자
+                  </label>
+                </div>
+                <div class="col-1"></div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="member_gender"
+                    value="여"
+                  />
+                  <label class="form-check-label" for="gridRadios2">
+                    여자
+                  </label>
+                </div>
+              </div>
+            </div>
+            </fieldset>
+            <!-- 성별 그룹 끝 -->
+            <!-- 전화번호 그룹 -->
+            <div class="form-group">
+              <div class="form-row">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary col-2"
+                  disabled
+                >
+                  전화번호
+                </button>
+              <div class="col-3">
+                <select id="" class="form-control text-center" name="member_hp">
+                  <option selected>${memberInfo.member_hp}</option>
+                  <option value="010">010</option>
+                  <option value="011">011</option>
+                  <option value="016">016</option>
+                  <option value="017">017</option>
+                  <option value="018">018</option>
+                  <option value="019">019</option>
+                </select>
+              </div>
+
+              <div class="col-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id=""
+                  name="member_hp2"
+                  maxlength="4"
+                  value="${memberInfo.member_hp2}"
+                />
+              </div>
+
+              <div class="col-3 ">
+                <input
+                  type="text"
+                  class="form-control"
+                  id=""
+                  name="member_hp3"
+                  maxlength="4"
+                  value="${memberInfo.member_hp3}"
+                />
+              </div>
+              </div>
+          </div>
+          <!-- 전화번호 그룹 끝 -->
+          <!-- 생년월일 그룹 -->
+          <div class="form-group">
+            <div class="form-row">           
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary col-2"
+                  disabled
+                >
+                  생년월일
+                </button>
+              <div class="col-3">                
+                <select id="year" class="form-control" name="member_birth_y">
+                  <option></option>
+                </select>
+              </div>
+              <div class="col-3">                
+                <select id="month" class="form-control" name="member_birth_m">
+                  <option></option>
+                </select>
+              </div>
+              <div class="col-3">              
+                <select id="day" class="form-control" name="member_birth_d">
+                  <option></option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- 생년월일 그룹 끝 -->
+          <!-- 이메일 그룹 -->
+             <div class="form-group">
+               <div class="form-row">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary col-2"
+                  disabled
+                >
+                  이메일
+                </button>
+              <div class="col-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  id=""
+                  name="member_email"
+                  value="${memberInfo.member_email}"
+                />
+              </div>
+              <div class="col-3">
+                <select id="" class="form-control" name="member_email2">
+                  <option selected>${memberInfo.member_email2}</option>
+                  <option value="hanmail.net">hanmail.net</option>
+                  <option value="naver.com">naver.com</option>
+                  <option value="yahoo.co.kr">yahoo.co.kr</option>
+                  <option value="hotmail.com">hotmail.com</option>
+                  <option value="paran.com">paran.com</option>
+                  <option value="nate.com">nate.com</option>
+                  <option value="google.com">google.com</option>
+                  <option value="gmail.com">gmail.com</option>
+                  <option value="empal.com">empal.com</option>
+                  <option value="korea.com">korea.com</option>
+                  <option value="freechal.com">freechal.com</option>
+                </select>
+            </div>
+        </div>
+          </div>
+          <!-- 이메일 그룹 끝 -->
+          <!-- 주소그룹 -->
+            <div class="form-group">
+              <div class="form-row">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary col-2"
+                  disabled
+                >
+                  주소
+                </button>
+                <div class="col-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="member_zonecode"
+                  name="member_zonecode"
+                  value="${memberInfo.member_zonecode}" readonly
+                />
+              </div>
+              <button
+                  type="button"
+                  onclick="findAddr()"
+                  class="btn btn-outline-secondary col-2"
+                >
+                  주소찾기
+                </button>
+            </div>
+          </div>
+          <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control col-11"
+                  id="member_roadAddress"
+                  name="member_roadAddress"
+                  value="${memberInfo.member_roadAddress}"
+                  readonly
+                />             
+            </div>
+              <div class="form-group">              
+                <input
+                  type="text"
+                  class="form-control col-11"
+                  id="member_remainingAddress"
+                  name="member_remainingAddress"
+                  value="${memberInfo.member_remainingAddress}"
+                 
+                />
+              </div>
+            </div>
+            <!-- 주소그룹 끝 -->
+            <!-- 가입하기, 뒤로기가 버튼 -->
+            <div class="mt-4 mb-1 d-flex justify-content-center">
+              <button
+                type="submit"
+                class="btn btn-outline-secondary mr-3"
+                id="submit_button"
+                onclick=""
+              >
+                수정완료
+              </button>
+              <button type="button" class="btn btn-outline-secondary" onclick="">
+                돌아가기
+              </button>
+            </div>
+            <!-- 가입하기, 뒤로가기 버튼 끝 -->
+          </div>
+        </div>
+        </form>
+      </span>
+    </div>
+  </body>
+
 </html>

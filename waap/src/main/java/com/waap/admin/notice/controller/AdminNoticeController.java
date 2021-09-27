@@ -143,7 +143,7 @@ public class AdminNoticeController {
 		String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
 			
 		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
-		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("C:\\notice\\file\\"+storedFileName));
+		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("D:\\waap_project_file\\notice\\file\\"+storedFileName));
 			
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);
