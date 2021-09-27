@@ -3,17 +3,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
-<html>
-	<head>
-	<!-- 합쳐지고 최소화된 최신 CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<!-- 부가적인 테마 -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	
-	<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-	 	<title>커뮤니티</title>
-	</head>
-	<script type="text/javascript">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>커뮤니티 상세페이지</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/commumity/css/communityStyle.css" />
+    <script
+      src="https://kit.fontawesome.com/8a5f5e4107.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
@@ -75,87 +82,85 @@
  		}
 		
 	</script>
-	<body>
-	
-		<div class="container">
-			<header>
-				<h1>커뮤니티 수정</h1>
-			</header>
-			<hr />
-			 
-			<ul class="nav nav-pills">
-				<li class="nav-item"><a class="nav-link active" href="${contextPath}/community/list.do">목록</a></li>
-				<li class="nav-item"><a class="nav-link active" href="${contextPath}/community/writeView.do">글 작성</a></li>
-				<li class="nav-item"><a class="nav-link active" href="${contextPath}/mypage/mylist.do">내 글보기</a></li>
-			</ul>
-			<hr />
-			
-			<section id="container">
-				<form name="updateForm" role="form" method="post" action="${contextPath}/community/update.do" enctype="multipart/form-data">
-					<input type="hidden" id="fileNoDel" name="fileNoDel[]" value="">
-					<input type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
-					
-						<div class="form-group">
-							<label for="com_no" class="col-sm-2 control-label">글 번호</label>
-							<input type="text" id="com_no" name="com_no" class="form-control" value="${update.com_no}" readonly/>
-						</div>
-							
-						<div class="form-group">
-							<label for="com_title" class="col-sm-2 control-label">제목</label>
-							<input type="text" id="com_title" name="com_title" class="form-control" value="${update.com_title}" />
-						</div>
-							
-						<div class="form-group">
-							<label for="com_content" class="col-sm-2 control-label">내용</label>
-							<textarea id="com_content" name="com_content" class="form-control" ><c:out value="${update.com_content}" /></textarea>
-						</div>
-							
-						<div class="form-group">
-							<label for="member_id" class="col-sm-2 control-label">작성자</label>
-							<input type="text" id="member_id" name="member_id" class="form-control" value="${update.member_id}"  readonly/>
-						</div>
-							
+  </head>
+  <body>
+    <div class="container">
+      <!-- 제목 -->
+      <h2 class="font-weight-bold text-center mt-5 mb-3">
+        커뮤니티 수정페이지
+      </h2>
+      <!-- 제목 끝 -->
 
-						<div class="form-group">
-							<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
-							<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/>					
-						</div>
-						
-						<div class="form-group">
-							<label for="regdate" class="col-sm-2 control-label">수정날짜</label>
-							<fmt:formatDate value="${update.modifydate}" pattern="yyyy-MM-dd"/>					
-						</div>
-						
-						<div class="form-group">
-							<label for="view_count" class="col-sm-2 control-label">조회수</label>
-							<input type="text" id="view_count" name="view_count" class="form-control" value="${update.view_count}" readonly/>					
-						</div>
-						
-						<span>파일 목록</span>
-						<div id="fileIndex" class="form-group" style="border: 1px solid #dbdbdb;">	
-							<tr>
-								<td>
-									<c:forEach var="file" items="${file}" varStatus="var">
-									<div>
-										<input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}" value="${file.FILE_NO }">
-										<input type="hidden" id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
-										<a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)
-										<button id="fileDel" onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');" type="button">삭제</button><br>
-									</div>
-									</c:forEach>
-								</td>
-							</tr>
-						</div>
-						
-						<div>
-							<button type="button" class="update_btn">저장</button>
-							<button type="button" class="cancel_btn">취소</button>
-							<button type="button" class="fileAdd_btn">파일추가</button>
-						</div>
-				
-				</form>
-			</section>
-			<hr />
-		</div>
-	</body>
+      <!-- 메인 테이블 시작 -->
+      <form name="updateForm" role="form" method="post" action="${contextPath}/community/update.do" enctype="multipart/form-data">
+        <input type="hidden" id="fileNoDel" name="fileNoDel[]" value="">
+        <input type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
+      	<input type="hidden" id="com_no" name="com_no" value="${update.com_no}">
+      <div class="container">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col-1" class="col-1 bg-light text-center align-middle">번호</th>
+                <td scope="col-1" class="col-1 align-middle">${update.com_no}</td>
+                <th scope="col-1" class="col-1 bg-light text-center align-middle">작성자</th>
+                <td scope="col-3" class="col-3 align-middle">${update.member_id}</td>
+                <th scope="col-1" class="col-1 bg-light text-center align-middle">작성일</th>
+                <td scope="col-2" class="col-2 align-middle" ><fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/></td>
+                <th scope="col-1" class="col-1 bg-light text-center align-middle">조회수</th>
+                <td scope="col-2" class="col-2">${update.view_count}</td>
+              </tr>
+              <tr>
+                <th scope="col" class="col-1 bg-light text-center align-middle">제목</th>
+                <td scope="col" colspan="11">
+                    <input type="text" id="com_title" name="com_title" class="form-control" value="${update.com_title}" />
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <td colspan="12" style="height: 350px">
+                <textarea id="com_content" name="com_content" class="form-control" ><c:out value="${update.com_content}" /></textarea>
+              </td>
+            </tr>
+            <tr>
+              <th scope="col" class="col-1 bg-light text-center">첨부파일
+                <td colspan="11">
+                    <div id="fileIndex" class="form-group" style="border: 1px solid #dbdbdb;">	
+                 		<c:forEach var="file" items="${file}" varStatus="var">
+                        <div>
+                              <input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}" value="${file.FILE_NO }">
+                              <input type="hidden" id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
+                              <a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)
+                              <button class="fileDel" onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');" type="button" >삭제</button><br>
+                         </div>
+                         </c:forEach>
+                    </div>
+                </td>
+              </th>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        	<div>
+                <button type="button" class="update_btn btn-outline-secondary btn-sm mr-2">저장</button>
+                <button type="button" class="cancel_btn btn-outline-secondary btn-sm mr-2">취소</button>
+                <button type="button" class="fileAdd_btn btn-outline-secondary btn-sm mr-2">파일추가</button>
+            </div>
+      </div>
+ 			  
+     
+    </form>
+</div>	
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
