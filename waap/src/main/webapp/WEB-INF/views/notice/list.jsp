@@ -16,7 +16,6 @@
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/commumity/css/communityStyle.css" />
   </head>
   <body>
     <!-- 타이틀 시작-->
@@ -34,16 +33,17 @@
           <thead class="bg-light">
             <tr>
               <th scope="col-1">번호</th>
-              <th scope="col-5">제목</th>
+              <th scope="col-4">제목</th>
               <th scope="col-2">작성자</th>
               <th scope="col-2">작성일</th>
               <th scope="col-1">조회수</th>  
             </tr>
           </thead>
+          
           <tbody>
             <c:forEach items="${list}" var = "list">
             <tr>
-              <th scope="row"><c:out value="${list.notice_no}" /></th>
+              <td scope="row"><c:out value="${list.notice_no}" /></td>
               <td class="cursor_test">
                 <a href="${contextPath}/notice/readView.do?notice_no=${list.notice_no}"><c:out value="${list.notice_title}" /></a>
               </td>
@@ -127,15 +127,5 @@
              });   
       </script>
     <!-- 검색창 끝 -->
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>

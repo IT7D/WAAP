@@ -3,11 +3,11 @@
 	isELIgnored="false"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-<!DOCTYPE html >
+
 <html>
 <meta charset="utf-8">
 
-<head>마이페이지</head>
+<head>마이페이지
 <script type="text/javascript">
 	 
 		$(document).ready(function(){
@@ -38,27 +38,18 @@
 						}
 					  }
 				    })	
-			      });
+			    })
 		   
 		})
 		
 		
 </script>
-	<style>
-		.update_btn {
-		    position: absolute;
-		    top: 100px;
-		    left: 600px;
-		}
-		
-		
-	</style>
+</head>
 <body>
-	<body>
-    <div class="container d-flex justify-content-center mt-5">
-      <span class="border py-3">
-        <form name="frm_list_member" id="listForm">
-          <div class="container">
+	<form name="frm_list_member" id="listForm">
+	<div class="container d-flex justify-content-center mt-5">
+		<span class="border py-3">	
+      		<div class="container">
             <!-- 아이디 그룹 -->
             <div class="form-group">
               <div class="form-row">
@@ -79,11 +70,10 @@
                     value="${memberInfo.member_id}"
                     readonly
                   />
-                  <div id="id_check_message"></div>
                 </div>
                 <div class="col-4"></div>
-                <button type="submit" class="btn btn-outline-secondary">내 정보수정</button>
-              </div>
+                <button type="button" class="update_btn btn btn-outline-secondary">내 정보수정</button>
+             	</div>
             </div>
             <!-- 아이디 그룹 끝 -->
             <!-- 비밀번호 그룹 -->
@@ -104,9 +94,8 @@
                   id="member_pw"
                   name="member_pw"
                 />
-                <div id="pw_check_message"></div>
-              </div>
-            </div>
+	            </div>
+	            </div>
             </div>
             <!-- 비밀번호 그룹 끝 -->
             <!-- 이름 그룹 -->
@@ -151,7 +140,7 @@
                     type="radio"
                     name="member_gender"
                     value="남"
-                    checked
+                    <c:if test="${memberInfo.member_gender eq '남'}">checked</c:if>
                   />
                   <label class="form-check-label" for="gridRadios1">
                     남자
@@ -164,6 +153,7 @@
                     type="radio"
                     name="member_gender"
                     value="여"
+                    <c:if test="${memberInfo.member_gender eq '여'}">checked</c:if>
                   />
                   <label class="form-check-label" for="gridRadios2">
                     여자
@@ -229,19 +219,13 @@
                   생년월일
                 </button>
               <div class="col-3">                
-                <select id="year" class="form-control" name="member_birth_y">
-                  <option></option>
-                </select>
+                <input type="text"  class="form-control" name="member_birth_y" value="${memberInfo.member_birth_y} 년" readonly> 
               </div>
               <div class="col-3">                
-                <select id="month" class="form-control" name="member_birth_m">
-                  <option></option>
-                </select>
+                <input type="text" class="form-control" name="member_birth_m" value="${memberInfo.member_birth_m} 월" readonly>
               </div>
               <div class="col-3">              
-                <select id="day" class="form-control" name="member_birth_d">
-                  <option></option>
-                </select>
+                <input type="text" class="form-control" name="member_birth_d" value="${memberInfo.member_birth_d} 일" readonly>
               </div>
             </div>
           </div>
@@ -314,10 +298,10 @@
               </div>
             </div>
             <!-- 주소그룹 끝 -->
-            <!-- 가입하기, 뒤로기가 버튼 -->
+           
             <div class="mt-4 mb-1 d-flex justify-content-center">
               <button
-                type="submit"
+                type="button"
                 class="btn btn-outline-secondary mr-3"
                 id="submit_button"
                 onclick="javascript:location.href='${contextPath}/mypage/mylist.do'"
@@ -327,13 +311,10 @@
               <button type="button" class="btn btn-outline-secondary" onclick="javascript:location.href='${contextPath}/mypage/withdrawalView.do'">
                 회원 탈퇴
               </button>
-            </div>
-            <!-- 가입하기, 뒤로가기 버튼 끝 -->
-          </div>
-        </div>
-        </form>
-      </span>
-    </div>
+            </div>  
+	      </span>
+      	</div>
+      </form>
   </body>
 
 </html>

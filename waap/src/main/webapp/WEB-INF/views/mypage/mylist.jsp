@@ -3,341 +3,111 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
-<html>
-	<head>
-	<!-- 합쳐지고 최소화된 최신 CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<!-- 부가적인 테마 -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-	<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-	 	<title>마이페이지</title>
-	 		<style type="text/css">
-				li {list-style: none; float: left; padding: 6px;}
-			</style>
-	</head>
-	
-	 <body>
-    <div class="container d-flex justify-content-center mt-5">
-      <span class="border py-3">
-        <form name="frm_list_member" id="listForm">
-          <div class="container">
-            <!-- 아이디 그룹 -->
-            <div class="form-group">
-              <div class="form-row">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary col-2"
-                  disabled
-                >
-                  아이디
-                </button>
-                <!-- 아이디 데이터 -->
-                <div class="col-3">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="member_id"
-                    name="member_id"
-                    value="${memberInfo.member_id}"
-                    readonly
-                  />
-                  <div id="id_check_message"></div>
-                </div>
-                
-              </div>
-            </div>
-            <!-- 아이디 그룹 끝 -->
-            <!-- 비밀번호 그룹 -->
-            <div class="form-group">
-              <div class="form-row">
-              <button
-                type="button"
-                class="btn btn-outline-secondary col-2"
-                disabled
-              >
-                변경 비밀번호
-              </button>
-              <!-- 비밀번호 데이터 -->
-              <div class="col-3">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="member_pw"
-                  name="member_pw"
-                  value="${memberInfo.member_pw}"
-                  size="20"
-                />
-                <div id="pw_check_message"></div>
-              </div>
-              <button
-                type="button"
-                class="btn btn-outline-secondary col-3"
-                disabled
-              >
-                변경 비밀번호 재확인
-              </button>
-              <!-- 비밀번호 재확인 데이터 -->
-              <div class="col-3">
-                <label class="sr-only" for="inlineFormInputName"></label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="member_pw_check"
-                  name="member_pw_check"
-                  size="20"
-                />
-                <div id="pw_check_message2"></div>
-              </div>
-            </div>
-            </div>
-            <!-- 비밀번호 그룹 끝 -->
-            <!-- 이름 그룹 -->
-            <div class="form-group">
-              <div class="form-row">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary col-2"
-                  disabled
-                >
-                  이름
-                </button>
-              <!-- 이름 데이터 -->
-              <div class="col-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id=""
-                  name="member_name"
-                  value="${memberInfo.member_name}"  readonly
-                />
-              </div>
-              </div>
-            </div>
-            <!-- 이름 그룹 끝 -->
-            <!-- 성별 그룹 -->
-            <fieldset class="form-group">
-              <div class="form-row">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary col-2"
-                  disabled
-                >
-                  성별
-                </button>
-              
-
-              <div class="col-3 d-flex justify-content-center align-items-center ">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="member_gender"
-                    value="남"
-                    checked
-                  />
-                  <label class="form-check-label" for="gridRadios1">
-                    남자
-                  </label>
-                </div>
-                <div class="col-1"></div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="member_gender"
-                    value="여"
-                  />
-                  <label class="form-check-label" for="gridRadios2">
-                    여자
-                  </label>
-                </div>
-              </div>
-            </div>
-            </fieldset>
-            <!-- 성별 그룹 끝 -->
-            <!-- 전화번호 그룹 -->
-            <div class="form-group">
-              <div class="form-row">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary col-2"
-                  disabled
-                >
-                  전화번호
-                </button>
-              <div class="col-3">
-                <select id="" class="form-control text-center" name="member_hp">
-                  <option selected>${memberInfo.member_hp}</option>
-                  <option value="010">010</option>
-                  <option value="011">011</option>
-                  <option value="016">016</option>
-                  <option value="017">017</option>
-                  <option value="018">018</option>
-                  <option value="019">019</option>
-                </select>
-              </div>
-
-              <div class="col-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id=""
-                  name="member_hp2"
-                  maxlength="4"
-                  value="${memberInfo.member_hp2}"
-                />
-              </div>
-
-              <div class="col-3 ">
-                <input
-                  type="text"
-                  class="form-control"
-                  id=""
-                  name="member_hp3"
-                  maxlength="4"
-                  value="${memberInfo.member_hp3}"
-                />
-              </div>
-              </div>
-          </div>
-          <!-- 전화번호 그룹 끝 -->
-          <!-- 생년월일 그룹 -->
-          <div class="form-group">
-            <div class="form-row">           
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary col-2"
-                  disabled
-                >
-                  생년월일
-                </button>
-              <div class="col-3">                
-                <select id="year" class="form-control" name="member_birth_y">
-                  <option></option>
-                </select>
-              </div>
-              <div class="col-3">                
-                <select id="month" class="form-control" name="member_birth_m">
-                  <option></option>
-                </select>
-              </div>
-              <div class="col-3">              
-                <select id="day" class="form-control" name="member_birth_d">
-                  <option></option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <!-- 생년월일 그룹 끝 -->
-          <!-- 이메일 그룹 -->
-             <div class="form-group">
-               <div class="form-row">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary col-2"
-                  disabled
-                >
-                  이메일
-                </button>
-              <div class="col-4">
-                <input
-                  type="text"
-                  class="form-control"
-                  id=""
-                  name="member_email"
-                  value="${memberInfo.member_email}"
-                />
-              </div>
-              <div class="col-3">
-                <select id="" class="form-control" name="member_email2">
-                  <option selected>${memberInfo.member_email2}</option>
-                  <option value="hanmail.net">hanmail.net</option>
-                  <option value="naver.com">naver.com</option>
-                  <option value="yahoo.co.kr">yahoo.co.kr</option>
-                  <option value="hotmail.com">hotmail.com</option>
-                  <option value="paran.com">paran.com</option>
-                  <option value="nate.com">nate.com</option>
-                  <option value="google.com">google.com</option>
-                  <option value="gmail.com">gmail.com</option>
-                  <option value="empal.com">empal.com</option>
-                  <option value="korea.com">korea.com</option>
-                  <option value="freechal.com">freechal.com</option>
-                </select>
-            </div>
-        </div>
-          </div>
-          <!-- 이메일 그룹 끝 -->
-          <!-- 주소그룹 -->
-            <div class="form-group">
-              <div class="form-row">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary col-2"
-                  disabled
-                >
-                  주소
-                </button>
-                <div class="col-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="member_zonecode"
-                  name="member_zonecode"
-                  value="${memberInfo.member_zonecode}" readonly
-                />
-              </div>
-              <button
-                  type="button"
-                  onclick="findAddr()"
-                  class="btn btn-outline-secondary col-2"
-                >
-                  주소찾기
-                </button>
-            </div>
-          </div>
-          <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control col-11"
-                  id="member_roadAddress"
-                  name="member_roadAddress"
-                  value="${memberInfo.member_roadAddress}"
-                  readonly
-                />             
-            </div>
-              <div class="form-group">              
-                <input
-                  type="text"
-                  class="form-control col-11"
-                  id="member_remainingAddress"
-                  name="member_remainingAddress"
-                  value="${memberInfo.member_remainingAddress}"
-                 
-                />
-              </div>
-            </div>
-            <!-- 주소그룹 끝 -->
-            <!-- 가입하기, 뒤로기가 버튼 -->
-            <div class="mt-4 mb-1 d-flex justify-content-center">
-              <button
-                type="submit"
-                class="btn btn-outline-secondary mr-3"
-                id="submit_button"
-                onclick=""
-              >
-                수정완료
-              </button>
-              <button type="button" class="btn btn-outline-secondary" onclick="">
-                돌아가기
-              </button>
-            </div>
-            <!-- 가입하기, 뒤로가기 버튼 끝 -->
-          </div>
-        </div>
-        </form>
-      </span>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마이페이지</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+  
+  </head>
+  <body>
+    <!-- 타이틀 시작-->
+    <div class="container">
+      <h2 class="font-weight-bold mt-5 mb-4">내가 쓴 글 목록</h2>
     </div>
-  </body>
+    <!-- 타이틀 끝 -->
 
+    <!-- 메인 테이블 시작 -->
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="bg-light text-center">
+            <tr>
+              <th scope="col-1" class="col-1">번호</th>
+              <th scope="col-7"class="col-7">제목</th>
+              <th scope="col-2"class="col-2">작성일</th>
+              <th scope="col-2"class="col-2">수정일</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+          <c:forEach items="${list}" var = "list">
+						<c:if test="${memberInfo.member_id == list.member_id}">
+            <tr>
+              <th scope="row">${list.com_no}</th>
+              <td class="cursor_test text-left ">
+                <a href="${contextPath}/community/readView.do?com_no=${list.com_no}"><c:out value="${list.com_title}" /></a>
+              </td>
+              <td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
+              <td><fmt:formatDate value="${list.modifydate}" pattern="yyyy-MM-dd"/></td>
+            </tr>
+            </c:if>
+          </c:forEach> 
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- 메인 테이블 끝 -->
+
+    <!-- 창 번호 시작 -->
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <c:if test="${pageMaker.prev}">
+                <li class="page-item"><a class="page-link; btn btn-outline-secondary" href="${contextPath}/mypage/mylist.do${pageMaker.makeSearch(pageMaker.startPage - 1)}" aria-disabled="true">이전</a></li>
+            </c:if> 
+                <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                  <li class="page-item" <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
+                  <a class="page-link" href="${contextPath}/mypage/mylist.do${pageMaker.makeSearch(idx)}">${idx}</a></li>
+                </c:forEach>
+            
+                <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+                  <li class="page-item"><a class="page-link" href="${contextPath}/mypage/mylist.do${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+                </c:if>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    
+    <!-- 창 번호 끝 -->
+    <!-- 검색창 시작 -->
+    <form class="form-inline my-0; d-flex justify-content-center">
+      <div class="row">
+        <div class="col-xs-6">
+          <select name="searchType" class="form-control">
+            <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>검색조건</option>
+              <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+            <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+            <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+            <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+          </select>
+        </div>
+        <div class="col-xs-6">
+          <div class="input-group">
+						<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
+					<span class="input-group-btn">
+						<button id="searchBtn" type="button" class="btn btn-outline-secondary">검색</button>
+					</span>
+			     </div>
+        </div>
+      </div>
+    </form>
+
+    <script>
+      $(function(){
+         $('#searchBtn').click(function() {
+                  self.location = "${contextPath}/mypage/mylist.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+                });
+           });   
+    </script>
+    <!-- 검색창 끝 -->
+
+  </body>
 </html>
