@@ -38,7 +38,7 @@
           </thead>
           <tbody class="text-center">
           <c:forEach items="${list}" var = "list">
-						<c:if test="${memberInfo.member_id == list.member_id}">
+			<c:if test="${memberInfo.member_id == list.member_id}">
             <tr>
               <th scope="row">${list.com_no}</th>
               <td class="cursor_test text-left ">

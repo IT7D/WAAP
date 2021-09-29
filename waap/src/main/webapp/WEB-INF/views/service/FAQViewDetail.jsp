@@ -11,11 +11,20 @@
 %>  
 
 <!DOCTYPE html>
-<html>
-<head>
-
-
-<script>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자주묻는질문 상세</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+  </head>
+  <script>
 	var update;
 		
 	function FAQDetailViewupdate(){
@@ -32,62 +41,63 @@
 	}
 
 </script>
-
-
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-
+  <body>
+    <div class="container">
+		<h2 class="font-weight-bold mt-5" align="center">자주 묻는 질문 상세페이지</h2>
+	</div>
+	<br>
+	<br>
 	<form action="" id="ServiceCustomerDetailViewForm">
-		
-		<table border='1'>
-		
-				<tbody>
-					<tr>	
-						<td>질문번호 : ${faqVO.faq_code}</td>
-					</tr>
-					
-					<tr>
-						<td>작성일 : ${faqVO.faq_writeDay}</td>
-					</tr>
-					
-					<tr>
-						<td> 질문내용 : <textarea id="adminUpdateContent" name="faq_content" cols="50" rows="20" disabled>${faqVO.faq_content}</textarea></td>
-					</tr>
-					
-					<tr>
-						<td>답변내용 : <textarea id="adminUpdateReply" name="faq_reply" cols="50" rows="10" disabled> ${faqVO.faq_reply}</textarea></td> 
-						
-					</tr>
-						
-					<tr>
-						<td>조회수 : ${faqVO.faq_clickCount}</td>
-					</tr>	
-					
-					
-				</tbody>
-		
-		</table>		
-		<input type="hidden" value="${faqVO.faq_code }" name="faq_code">
-		
-		
-		
-		<c:if test="${memberInfo.member_id == 'admin'}">
+      <!-- 메인 테이블 시작 -->
+      <div class="container">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col-1" class="bg-light">번호</th>
+                <td scope="col-1">${faqVO.faq_code}</td>
+                <th scope="col-1" class="bg-light">작성자</th>
+                <td scope="col-3">관리자</td>
+                <th scope="col-1" class="bg-light">작성일</th>
+                <td scope="col-2">${faqVO.faq_writeDay}</td>
+                <th scope="col-1" class="bg-light">조회수</th>
+                <td scope="col-2">${faqVO.faq_clickCount}</td>
+              </tr>
+              <tr>
+                <th scope="col" class="bg-light align-top">질문</th>
+                <td scope="col" colspan="11">
+                    <textarea id="adminUpdateContent" name="faq_content"  disabled>${faqVO.faq_content}</textarea></td>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+           	  <th scope="col" class="bg-light">답변</th>
+              <td colspan="12" style="height: 350px">
+                <textarea id="adminUpdateReply" name="faq_reply" cols="50" rows="10" disabled> ${faqVO.faq_reply}</textarea></td> 
+              </td>
+             </tr>
+            </tbody>
+          </table>
+    
+          <input type="hidden" value="${faqVO.faq_code }" name="faq_code">
+          
+          <c:if test="${memberInfo.member_id == 'admin'}">
 			<div id="admin_mode">
-				<input type="button" onclick=FAQDetailViewupdate() value="수정">
-				<input type="submit" value="삭제" onclick="javascript:form.action='${contextPath}/admin/service/FAQViewDelete.do'">
+				<input type="button" class="btn btn-outline-secondary col-1"  onclick=FAQDetailViewupdate() value="수정">
+				<input type="submit" class="btn btn-outline-secondary col-1"  value="삭제" onclick="javascript:form.action='${contextPath}/admin/service/FAQViewDelete.do'">
 			</div>
 			
 			<div id="UpdateMode" style="display:none;">
 				<input type="submit" value="수정완료" onclick="javascript:form.action='${contextPath}/admin/service/FAQViewUpdate.do';">
 				<input type="button" onclick="location.href='${contextPath}/service/FAQViewDetail.do?member_id=${memberInfo.member_id}&faq_code=${faqVO.faq_code }'" value="수정취소">
-			</div>
-									
+			</div>						
 		</c:if>
-		
-		<input type="button" onclick="location.href='${contextPath}/service/FAQView.do'" value="돌아가기">
-		
-	</form>
-</body>
+		<button type="button" class="btn btn-success" onclick="location.href='${contextPath}/service/FAQView.do'" style="margin-left: 500px;">목록</button>
+        </div>
+      </div>
+      
+      
+     </form>
+  </body>
 </html>

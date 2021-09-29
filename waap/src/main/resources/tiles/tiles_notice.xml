@@ -15,9 +15,4 @@
 		<put-attribute name="body" value="/WEB-INF/views/notice/readView.jsp" />
 	</definition>
 	
-	<definition name="/notice/nav" extends="baseLayout">
-		<put-attribute name="title" value="WAAP 공지사항 관리자 nav" />
-		<put-attribute name="body" value="/WEB-INF/views/notice/nav.jsp" />
-	</definition>
-
 </tiles-definitions>

@@ -7,7 +7,7 @@
 <html>
 <meta charset="utf-8">
 
-<head>마이페이지
+<head>
 <script type="text/javascript">
 	 
 		$(document).ready(function(){
@@ -46,6 +46,10 @@
 </script>
 </head>
 <body>
+	<div class="container">
+		<h2 class="font-weight-bold mt-5" align="center">마이페이지</h2>
+	</div>
+	
 	<form name="frm_list_member" id="listForm">
 	<div class="container d-flex justify-content-center mt-5">
 		<span class="border py-3">	

@@ -110,7 +110,6 @@ public class MypageController {
 		mav.setViewName(viewName);
 		mav.addObject("list", service.mylist(scri));
 		
-		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.mylistCount(scri));

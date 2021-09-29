@@ -77,19 +77,19 @@ public class ManagementController {
 	//관리자 작성 글 목록 조회
 	@RequestMapping(value="/mylist.do", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView mylist(@RequestParam("member_id") String member_id, CommunityVO communityVO, SearchCriteria scri, HttpSession session, HttpServletRequest request) throws Exception {
-			
+
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
 		mav.addObject("list", service.mylist(scri));
-		mav.addObject("member_id", member_id);
-			
+		
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.mylistCount(scri));
+		
 		mav.addObject("pageMaker", pageMaker);
-			
-			
+		mav.addObject("member_id", member_id);
 		return mav;
 	}
 }
