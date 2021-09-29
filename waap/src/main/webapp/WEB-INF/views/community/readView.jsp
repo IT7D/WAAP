@@ -17,7 +17,6 @@
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/commumity/css/communityStyle.css" />
     <script
       src="https://kit.fontawesome.com/8a5f5e4107.js"
       crossorigin="anonymous"
@@ -54,6 +53,9 @@
         
         //댓글 작성
         $(".replyWriteBtn").on("click", function(){
+        	if(fn_valiChk()){
+				return false;
+			}
             var formObj = $("form[name='replyForm']");
             formObj.attr("action", "${contextPath}/community/replyWrite.do");
             formObj.submit();
@@ -75,6 +77,16 @@
         });
       })
       
+      //댓글 입력안할시 alert 창 제공
+      function fn_valiChk(){
+			var regForm = $("form[name='replyForm'] .chk").length;
+			for(var i = 0; i<regForm; i++){
+				if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
+					alert($(".chk").eq(i).attr("placeholder"));
+					return true;
+				}
+			}
+      	}
       //첨부파일 다운로드
       function fn_fileDown(fileNo){
         var formObj = $("form[name='readForm']");
@@ -114,16 +126,12 @@
               </tr>
               <tr>
                 <th scope="col" class="col-1 bg-light text-center align-middle">제목</th>
-                <td scope="col" colspan="11">
-                  ${read.com_title}
-                </td>
+                <td scope="col" colspan="11">${read.com_title}</td>
               </tr>
             </thead>
             <tbody>
               <tr>
-              <td colspan="12" style="height: 350px">
-                ${read.com_content}
-              </td>
+              <td colspan="12" style="height: 350px">${read.com_content}</td>
             </tr>
             <tr>
               <th scope="col" class="col-1 bg-light text-center align-middle" style="font-size: 12px;" >첨부파일
@@ -202,17 +210,17 @@
         <input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
         <input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
         <input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
-	      
+
 	      <div class="container mt-3">
 	        <div class="card mb-2">
 	          <div class="card-header bg-light">
-	            <i class="fa fa-comment fa"></i><input type="text" id="member_id" name="member_id" value="${memberInfo.member_id}" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; background: transparent;" readonly/>
+	            <i class="fa fa-comment fa"></i><input type="text" id="member_id" name="member_id" value="${memberInfo.member_id}" style="border:none; background: transparent;" readonly/>
 	          </div>
 	                <div class="form-inline"></div>
 	                <textarea
-	                  class="form-control"
+	                  class="chk form-control"
 	                  id="reply_cont" name="reply_cont" 
-	                  rows="2" style="resize: none"
+	                  rows="2" style="resize: none" placeholder="댓글을 입력하세요."
 	                  ></textarea>
 	                <div class="d-flex justify-content-end">
 	                  <button
@@ -224,7 +232,8 @@
 	                </div>
 	          </div>
 	        </div>
-      </form> 
+      </form>
+     
     <!-- 댓글 끝 -->
   </body>
 </html>

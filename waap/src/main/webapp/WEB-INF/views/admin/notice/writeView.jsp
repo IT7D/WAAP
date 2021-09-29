@@ -28,77 +28,11 @@
       crossorigin="anonymous"
     />
     <!-- 부트스트랩 태그 끝 -->
-    <!-- 서머노트 태그:  스타일관련, 자바스크립트, 한글화, 서머노트js -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
-    
-    <!-- 서머노트 태그 끝 -->
-    <!-- 커뮤니티스타일 css -->
-  
-    <!-- 커뮤니티스타일 css 끝 -->
+
   </head>
   
   <script type="text/javascript">
 		$(document).ready(function(){
-
-			$(".summernote").summernote({
-			 // 에디터 높이
-		    height: 300,
-		    // 에디터 한글 설정
-		    lang: "ko-KR",
-		    // 에디터에 커서 이동 (input창의 autofocus라고 생각하시면 됩니다.)
-		    focus: true,
-		    toolbar: [
-		      // 글꼴 설정
-		      ["fontname", ["fontname"]],
-		      // 글자 크기 설정
-		      ["fontsize", ["fontsize"]],
-		      // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-		      ["style", ["bold", "italic", "underline", "strikethrough", "clear"]],
-		      // 글자색
-		      ["color", ["forecolor", "color"]],
-		      // 표만들기
-		      ["table", ["table"]],
-		      // 글머리 기호, 번호매기기, 문단정렬
-		      ["para", ["ul", "ol", "paragraph"]],
-		      // 줄간격
-		      ["height", ["height"]]
-		    ],
-		    // 추가한 글꼴
-		    fontNames: [
-		      "Arial",
-		      "Arial Black",
-		      "Comic Sans MS",
-		      "Courier New",
-		      "맑은 고딕",
-		      "궁서",
-		      "굴림체",
-		      "굴림",
-		      "돋음체",
-		      "바탕체"
-		    ],
-		    // 추가한 폰트사이즈
-		    fontSizes: [
-		      "8",
-		      "9",
-		      "10",
-		      "11",
-		      "12",
-		      "14",
-		      "16",
-		      "18",
-		      "20",
-		      "22",
-		      "24",
-		      "28",
-		      "30",
-		      "36"
-		    ]
-		  });
 			var formObj = $("form[name='writeForm']");	
 			
 			$(".write_btn").on("click", function(){
@@ -115,6 +49,7 @@
 			});
 			
 			fn_addFile();
+		})
 		
 		function fn_valiChk(){
 			var regForm = $("form[name='writeForm'] .chk").length;
@@ -126,7 +61,7 @@
 			}
 		}
 		
-		})
+		
 		
 		function fn_addFile(){
 			var fileIndex = 1;
@@ -149,15 +84,16 @@
         <h2 class="text-center mt-5 mb-4 font-weight-bold">공지사항 글쓰기</h2>
 	        <div class="form-group mb-0">
 	          <input type="text" id="notice_title" name="notice_title" class="chk form-control" placeholder="제목을 입력하세요." />
-	        </div>	
+	        </div>
+	        <br>	
         </div>
      	
       <!-- 타이틀, 제목입력창 끝 -->
 
       <!-- 내용 입력 및 서머노트(글자편집창) -->
 	      <div class="container">
-	        <textarea id="notice_cont" name="notice_cont" class="chk summernote" placeholder="내용을 입력하세요."></textarea>
-	        <p>
+	       <textarea id="notice_cont" name="notice_cont"  rows="20" style="resize: none" class="chk form-control" placeholder="내용을 입력하세요."></textarea>
+	        <br>
 	        <div id="fileIndex">
 	        </div>
 	        <button

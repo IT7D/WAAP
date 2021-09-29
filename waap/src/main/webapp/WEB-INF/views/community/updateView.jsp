@@ -15,7 +15,6 @@
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/commumity/css/communityStyle.css" />
     <script
       src="https://kit.fontawesome.com/8a5f5e4107.js"
       crossorigin="anonymous"
@@ -24,7 +23,7 @@
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
-			$(document).on("click","#fileDel", function(){
+			$("#fileDel").on("click", function(){
 				$(this).parent().remove();
 			})
 			
@@ -49,7 +48,7 @@
 			})
 			
 			
-		
+		})
 			
 		function fn_valiChk(){
 			var updateForm = $("form[name='updateForm'] .chk").length;
@@ -60,7 +59,7 @@
 				}
 			}
 		}
-		})
+		
 			
 		function fn_addFile(){
 			var fileIndex = 1;
@@ -115,42 +114,46 @@
               <tr>
                 <th scope="col" class="col-1 bg-light text-center align-middle">제목</th>
                 <td scope="col" colspan="11">
-                    <input type="text" id="com_title" name="com_title" class="chk form-control" value="${update.com_title}" style="border:none" placeholder="제목을 입력하세요." />
+                    <input type="text" id="com_title" name="com_title" class="chk form-control" value="${update.com_title}" style="border:none;  resize: none" placeholder="제목을 입력하세요." />
                 </td>
               </tr>
             </thead>
             <tbody>
               <tr>
               <td colspan="12" style="height: 350px">
-                <textarea id="com_content" name="com_content" class="chk form-control" style="border:none" placeholder="내용을 입력하세요."><c:out value="${update.com_content}" /></textarea>
+                <textarea id="com_content" name="com_content" class="chk form-control" style="border:none;  resize: none" spellcheck="false" placeholder="내용을 입력하세요.">${update.com_content}</textarea>
               </td>
             </tr>
             <tr>
-              <th scope="col" class="col-1 bg-light text-center">첨부파일
+              <th scope="col" class="col-1 bg-light text-center">첨부파일</th>
                 <td colspan="11">
-                    <div id="fileIndex" class="form-group" style="border: 1px solid #dbdbdb;">	
-                 		<c:forEach var="file" items="${file}" varStatus="var">
-                        <div>
+                    <div id="fileIndex">	
+                 		 <c:forEach var="file" items="${file}" varStatus="var">
+                         <div>
                               <input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}" value="${file.FILE_NO }">
                               <input type="hidden" id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
                               <a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)
-                              <button class="fileDel" onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');" type="button" >삭제</button><br>
+                              <button class="fileDel" id="fileDel" onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');" type="button" >삭제</button>
                          </div>
                          </c:forEach>
                     </div>
                 </td>
-              </th>
             </tr>
             </tbody>
           </table>
         </div>
-        	<div>
-                <button type="button" class="update_btn btn btn-outline-secondary btn-sm mr-2">저장</button>
-                <button type="button" class="cancel_btn btn btn-outline-secondary btn-sm mr-2">취소</button>
-                <button type="button" class="fileAdd_btn btn btn-outline-secondary btn-sm mr-2">파일추가</button>
-            </div>
+        <div>
+  			<button type="button" class="fileAdd_btn btn btn-outline-secondary btn-sm mr-2">파일추가</button>
+  		</div>
       </div>
- 			  
+ 		<div class="container">
+	        <div class="d-flex justify-content-center">
+	          
+	          <button type="button" class="update_btn btn btn-outline-secondary btn-sm mr-2">저장</button>
+	          <button type="button" class="cancel_btn btn btn-outline-secondary btn-sm mr-2">취소</button>
+
+	        </div>
+	      </div>	  
      
     </form>
 </div>	
