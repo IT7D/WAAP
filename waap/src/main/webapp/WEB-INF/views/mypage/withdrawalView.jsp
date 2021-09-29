@@ -72,7 +72,10 @@
 	</script>
   </head>
   <body>
-  	<br><br><br><br>
+  	<div class="container">
+		<h2 class="font-weight-bold mt-5" align="center">회원 탈퇴</h2>
+	</div>
+  	<br><br>
     <form class="p-3 col-md-4 container-md bg-white mt-3 border boer-dark border-radius" action="${contextPath}/mypage/withdrawal.do" method="post" id="withdrawalForm"  >
                 <div class="form-group justify-content-center">
                     <div class="container-md text-center">

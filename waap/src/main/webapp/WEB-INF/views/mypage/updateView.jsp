@@ -7,7 +7,7 @@
 <html>
 <meta charset="utf-8">
 
-<head>마이 페이지 수정
+<head>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 function findAddr(){
@@ -63,9 +63,9 @@ function findAddr(){
 					"<option value='" + i + "'>" + i + " 일" + "</option>");
 		}
 
-		$("#year > option[value=" + com_year + "]").attr("selected", "true");
-		$("#month > option[value=" + com_month + "]").attr("selected", "true");
-		$("#day > option[value=" + com_day + "]").attr("selected", "true");
+		$("#year > option[value=" + ${memberInfo.member_birth_y} + "]").attr("selected", "true");
+		$("#month > option[value=" + ${memberInfo.member_birth_m} + "]").attr("selected", "true");
+		$("#day > option[value=" + ${memberInfo.member_birth_d} + "]").attr("selected", "true");
 
 	}
 </script>
@@ -120,6 +120,10 @@ function findAddr(){
 
 </head>
 <body>
+	<div class="container">
+		<h2 class="font-weight-bold mt-5" align="center">내 정보 수정</h2>
+	</div>
+	
   <form name="frm_mod_member">
     <div class="container d-flex justify-content-center mt-5">
       <span class="border py-3">

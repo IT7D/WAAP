@@ -110,11 +110,11 @@
               </tr>
               <tr>
                 <th scope="col" class="bg-light text-center align-middle">제목</th>
-                <td scope="col" colspan="11"> <input type="text" id="notice_title" name="notice_title" class="chk form-control" value="${update.notice_title}" placeholder="제목을 입력하세요." /></td>
+                <td scope="col" colspan="11"> <input type="text" id="notice_title" name="notice_title" class="chk form-control" value="${update.notice_title}" style="border:none" placeholder="제목을 입력하세요." /></td>
               </tr>
             </thead>
             <tbody>
-              <td colspan="12" style="height: 350px"><textarea id="notice_cont" name="notice_cont" class="chk form-control" placeholder="내용을 입력하세요."><c:out value="${update.notice_cont}" /></textarea></td>
+              <td colspan="12" style="height: 350px"><textarea id="notice_cont" name="notice_cont" class="chk form-control" style="border:none" placeholder="내용을 입력하세요."><c:out value="${update.notice_cont}" /></textarea></td>
             </tbody>
             <tr>
               <th scope="col" class="col-1 bg-light text-center">첨부파일

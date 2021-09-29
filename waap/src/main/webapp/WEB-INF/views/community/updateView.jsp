@@ -115,14 +115,14 @@
               <tr>
                 <th scope="col" class="col-1 bg-light text-center align-middle">제목</th>
                 <td scope="col" colspan="11">
-                    <input type="text" id="com_title" name="com_title" class="chk form-control" value="${update.com_title}" placeholder="제목을 입력하세요." />
+                    <input type="text" id="com_title" name="com_title" class="chk form-control" value="${update.com_title}" style="border:none" placeholder="제목을 입력하세요." />
                 </td>
               </tr>
             </thead>
             <tbody>
               <tr>
               <td colspan="12" style="height: 350px">
-                <textarea id="com_content" name="com_content" class="chk form-control" placeholder="내용을 입력하세요."><c:out value="${update.com_content}" /></textarea>
+                <textarea id="com_content" name="com_content" class="chk form-control" style="border:none" placeholder="내용을 입력하세요."><c:out value="${update.com_content}" /></textarea>
               </td>
             </tr>
             <tr>

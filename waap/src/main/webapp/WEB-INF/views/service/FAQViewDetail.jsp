@@ -66,7 +66,7 @@
               <tr>
                 <th scope="col" class="bg-light align-top">질문</th>
                 <td scope="col" colspan="11">
-                    <textarea id="adminUpdateContent" name="faq_content"  disabled>${faqVO.faq_content}</textarea></td>
+                    <textarea id="adminUpdateContent" class="form-control" name="faq_content" maxlength="40" rows="1" style="width:100%; resize: none; background: transparent; border:0; text-align:left" spellcheck="false" disabled>${faqVO.faq_content}</textarea>
                 </td>
               </tr>
             </thead>
@@ -74,7 +74,7 @@
             <tr>
            	  <th scope="col" class="bg-light">답변</th>
               <td colspan="12" style="height: 350px">
-                <textarea id="adminUpdateReply" name="faq_reply" cols="50" rows="10" disabled> ${faqVO.faq_reply}</textarea></td> 
+                <textarea id="adminUpdateReply" class="form-control" name="faq_reply" maxlength="40" rows="10" style="width:100%; border:none; background: transparent; border:0; resize: none; text-align:left"  spellcheck="false" disabled> ${faqVO.faq_reply}</textarea>
               </td>
              </tr>
             </tbody>
@@ -89,11 +89,19 @@
 			</div>
 			
 			<div id="UpdateMode" style="display:none;">
-				<input type="submit" value="수정완료" onclick="javascript:form.action='${contextPath}/admin/service/FAQViewUpdate.do';">
-				<input type="button" onclick="location.href='${contextPath}/service/FAQViewDetail.do?member_id=${memberInfo.member_id}&faq_code=${faqVO.faq_code }'" value="수정취소">
+				<input type="submit" class="btn btn-outline-secondary col-1" value="수정완료" onclick="javascript:form.action='${contextPath}/admin/service/FAQViewUpdate.do';">
+				<input type="button" class="btn btn-outline-secondary col-1" onclick="location.href='${contextPath}/service/FAQViewDetail.do?member_id=${memberInfo.member_id}&faq_code=${faqVO.faq_code }'" value="수정취소">
 			</div>						
 		</c:if>
-		<button type="button" class="btn btn-success" onclick="location.href='${contextPath}/service/FAQView.do'" style="margin-left: 500px;">목록</button>
+		<div class="d-flex justify-content-center">
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm mr-2"
+            onclick="location.href='${contextPath}/service/FAQView.do'"
+          >
+            목록
+          </button>
+        </div>
         </div>
       </div>
       

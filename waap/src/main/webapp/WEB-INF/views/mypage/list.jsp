@@ -181,7 +181,6 @@
                 <input
                 type="text"
                 class="form-control"
-                id=""
                 name="member_hp"
                 maxlength="4"
                 value="${memberInfo.member_hp}" readonly
@@ -192,7 +191,6 @@
                 <input
                   type="text"
                   class="form-control"
-                  id=""
                   name="member_hp2"
                   maxlength="4"
                   value="${memberInfo.member_hp2}" readonly
@@ -203,7 +201,6 @@
                 <input
                   type="text"
                   class="form-control"
-                  id=""
                   name="member_hp3"
                   maxlength="4"
                   value="${memberInfo.member_hp3}" readonly

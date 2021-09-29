@@ -68,7 +68,7 @@ request.setCharacterEncoding("UTF-8");
 
 					<button class= "btn btn-outline-secondary col-1"
 						onclick="location.href='${contextPath}/admin/service/adminFAQWriteForm.do'">
-					등록</button>
+					글 작성</button>
 			</c:if>
             </div>
           </div>

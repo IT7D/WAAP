@@ -90,6 +90,7 @@
       <h2 class="font-weight-bold text-center mt-5 mb-3">
         커뮤니티 상세페이지
       </h2>
+      <br>
       <!-- 제목 끝 -->
 
       <!-- 메인 테이블 시작 -->
@@ -211,7 +212,7 @@
 	                <textarea
 	                  class="form-control"
 	                  id="reply_cont" name="reply_cont" 
-	                  rows="2"
+	                  rows="2" style="resize: none"
 	                  ></textarea>
 	                <div class="d-flex justify-content-end">
 	                  <button
