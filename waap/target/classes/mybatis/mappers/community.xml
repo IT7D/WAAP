@@ -171,7 +171,7 @@
 					  	  REPLY_COUNT,
 					  	  ROW_NUMBER() OVER(ORDER BY REGDATE DESC) AS rNUM
 			   		FROM COM_WRITE
-			   		WHERE 1=1		  
+			   		WHERE 1=1	  
 						<include refid="search"></include> 	  				
 				)
 		WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd}
@@ -209,7 +209,7 @@
 	</select>
 	
 	<!-- 마이페이지 내가 쓴 글 조회-->
-	<select id="mylist" resultType="com.waap.community.vo.CommunityVO" parameterType="com.waap.common.base.SearchCriteria">
+	<select id="mylist" resultType="com.waap.community.vo.CommunityVO" parameterType="java.util.Map">
 		SELECT COM_NO, COM_TITLE, COM_CONTENT, MEMBER_ID, REGDATE, MODIFYDATE
 			FROM ( SELECT COM_NO,
 					      COM_TITLE,
@@ -219,7 +219,7 @@
 					  	  MODIFYDATE,
 					  	  ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS rNUM
 			   		FROM COM_WRITE
-			   		WHERE 1=1
+			   		WHERE MEMBER_ID = #{member_id}
 						<include refid="search"></include> 	  				
 				)
 		WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd}
@@ -227,10 +227,10 @@
 	</select>
 	
 	 
-	<select id="mylistCount" parameterType="com.waap.common.base.SearchCriteria" resultType="int">
+	<select id="mylistCount" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(COM_NO)
 		FROM COM_WRITE
-		WHERE 1=1		
+		WHERE MEMBER_ID = #{member_id}		
 			<include refid="search"></include>
 	<![CDATA[	    
 			and COM_NO > 0

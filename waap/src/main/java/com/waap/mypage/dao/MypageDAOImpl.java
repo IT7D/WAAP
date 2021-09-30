@@ -1,6 +1,8 @@
 package com.waap.mypage.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,14 +52,27 @@ public class MypageDAOImpl implements MypageDAO {
 	
 	//마이페이지 내가쓴글 목록 조회
 	@Override
-	public List<CommunityVO> mylist(SearchCriteria scri) throws Exception{
-		return sqlSession.selectList("communityMapper.mylist", scri);
+	public List<CommunityVO> mylist(String member_id, SearchCriteria scri) throws Exception{
+		
+		Map<String, Object> tempMap = new HashMap<String, Object>();
+		
+		tempMap.put("member_id", member_id);
+		tempMap.put("rowStart", scri.getRowStart());
+		tempMap.put("rowEnd", scri.getRowEnd());	
+		
+		
+		return sqlSession.selectList("communityMapper.mylist", tempMap);
 	}
 	
 	//마이페이지 게시글 총 개수
 	@Override
-	public int mylistCount(SearchCriteria scri) throws Exception {
-		return sqlSession.selectOne("communityMapper.mylistCount", scri);
+	public int mylistCount(String member_id, SearchCriteria scri) throws Exception {
+		Map<String, Object> tempMap = new HashMap<String, Object>();
+		
+		tempMap.put("member_id", member_id);
+		tempMap.put("rowStart", scri.getRowStart());
+		tempMap.put("rowEnd", scri.getRowEnd());	
+		return sqlSession.selectOne("communityMapper.mylistCount", tempMap);
 	}
 	
 	

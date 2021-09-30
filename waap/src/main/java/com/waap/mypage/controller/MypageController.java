@@ -103,16 +103,18 @@ public class MypageController {
 	
 	//마이페이지 내가 쓴글 목록 조회
 	@RequestMapping(value="/mylist.do", method = {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView mylist(CommunityVO communityVO, SearchCriteria scri, HttpSession session, HttpServletRequest request) throws Exception {
+	public ModelAndView mylist(SearchCriteria scri, HttpSession session, HttpServletRequest request) throws Exception {
+		MemberVO memberInfo = (MemberVO) session.getAttribute("memberInfo");
+		
 		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
-		mav.addObject("list", service.mylist(scri));
+		mav.addObject("list", service.mylist(memberInfo.getMember_id(), scri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(service.mylistCount(scri));
+		pageMaker.setTotalCount(service.mylistCount(memberInfo.getMember_id(), scri));
 		mav.addObject("pageMaker", pageMaker);
 		
 		

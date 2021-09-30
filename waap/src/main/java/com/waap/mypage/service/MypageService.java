@@ -21,10 +21,10 @@ public interface MypageService {
 	public void withdrawal(MemberVO vo) throws Exception;
 	
 	//마이페이지 내가쓴글 목록 조회
-	public List<CommunityVO> mylist(SearchCriteria scri) throws Exception;
+	public List<CommunityVO> mylist(String member_id, SearchCriteria scri) throws Exception;
 	
 	//마이페이지 게시글 총 개수
-	public int mylistCount(SearchCriteria scri) throws Exception;
+	public int mylistCount(String member_id, SearchCriteria scri) throws Exception;
 	
 	
 }

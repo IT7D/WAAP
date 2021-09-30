@@ -42,14 +42,14 @@ public class MypageServiceImpl implements MypageService {
 	
 	//마이페이지 내가쓴글 목록 조회
 	@Override
-	public List<CommunityVO> mylist(SearchCriteria scri) throws Exception {
-		return DAO.mylist(scri);
+	public List<CommunityVO> mylist(String member_id, SearchCriteria scri) throws Exception {
+		return DAO.mylist(member_id, scri);
 	}
 	
 	//마이페이지 게시글 총 개수
 	@Override
-	public int mylistCount(SearchCriteria scri) throws Exception {
-		return DAO.mylistCount(scri);
+	public int mylistCount(String member_id, SearchCriteria scri) throws Exception {
+		return DAO.mylistCount(member_id, scri);
 	}
 	
 	
