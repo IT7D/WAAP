@@ -41,13 +41,13 @@ public class ManagementServiceImpl implements ManagementService {
 	
 	//관리자 작성 글 목록 조회
 	@Override
-	public List<CommunityVO> mylist(SearchCriteria scri) throws Exception {
-		return DAO.mylist(scri);
+	public List<CommunityVO> mylist(String member_id, SearchCriteria scri) throws Exception {
+		return DAO.mylist(member_id, scri);
 	}
 		
 	//관리자 작성 글 총 개수
 	@Override
-	public int mylistCount(SearchCriteria scri) throws Exception {
-		return DAO.mylistCount(scri);
+	public int mylistCount(String member_id, SearchCriteria scri) throws Exception {
+		return DAO.mylistCount(member_id, scri);
 	}
 }

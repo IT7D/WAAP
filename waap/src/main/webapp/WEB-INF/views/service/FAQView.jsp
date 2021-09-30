@@ -28,7 +28,7 @@ request.setCharacterEncoding("UTF-8");
 
   <body>
     <div class="container">
-		<h2 class="font-weight-bold mt-5" align="center">자주 묻는 질문</h2>
+		<h2 class="font-weight-bold mt-5">자주 묻는 질문</h2>
 	</div>
     <br>
     <br>
@@ -42,7 +42,7 @@ request.setCharacterEncoding("UTF-8");
           <div class="container" style="width: 1000px; margin: 0px;">
             <div class="table-title">
               <table class="table table-bordered">
-                <thead class="thead-light">
+                <thead class="bg-light">
                   <tr>
                     <th scope="row">번호</th>
                     <th scope="row">질문</th>
@@ -93,11 +93,12 @@ request.setCharacterEncoding("UTF-8");
                 </ul>
             </nav>
         </div>
+        <h5 class="text-danger mt-5">
+	      고객센터 전화상담은 10시~16시 까지, (12시~1시)점심시간 상담 불가
+	    </h5>
     </div>
     
-
-    <h5 style="margin-top: 300px; margin-left: 400px; color: red">
-      고객센터 전화상담은 10시~16시 까지, (12시~1시)점심시간 상담 불가
-    </h5>
+    
+    
   </body>
 </html>

@@ -104,9 +104,9 @@ public class MypageController {
 	//마이페이지 내가 쓴글 목록 조회
 	@RequestMapping(value="/mylist.do", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView mylist(SearchCriteria scri, HttpSession session, HttpServletRequest request) throws Exception {
+		
 		MemberVO memberInfo = (MemberVO) session.getAttribute("memberInfo");
-		
-		
+
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);

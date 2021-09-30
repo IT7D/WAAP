@@ -21,9 +21,9 @@ public interface ManagementDAO {
 	public void deport(MemberVO vo) throws Exception;
 	
 	//관리자 작성 글 목록 조회
-	public List<CommunityVO> mylist(SearchCriteria scri) throws Exception;
+	public List<CommunityVO> mylist(String member_id, SearchCriteria scri) throws Exception;
 		
 	//관리자 작성 글 총 개수
-	public int mylistCount(SearchCriteria scri) throws Exception;
+	public int mylistCount(String member_id, SearchCriteria scri) throws Exception;
 	
 }

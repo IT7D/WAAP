@@ -45,11 +45,18 @@ public class ServiceControllerImpl extends BaseController implements ServiceCont
 		ModelAndView mav = new ModelAndView((String) request.getAttribute("viewName"));
 
 		HttpSession session = request.getSession();
-
+		
 		MemberVO memberInfo = (MemberVO) session.getAttribute("memberInfo");
-
+		
+		// 로그인 안하고 1:1문의 클릭시 오류 발생 예외처리
+		if(memberInfo == null) {
+			return mav;
+		}
+		
+		
 		List<ServiceCustomerVO> serviceCustomerVOList = serviceService.serviceCustomerData(memberInfo.getMember_id(),
 				scri);
+		
 		mav.addObject("serviceCustomerVOList", serviceCustomerVOList);
 
 		PageMaker pageMaker = new PageMaker();
@@ -118,7 +125,6 @@ public class ServiceControllerImpl extends BaseController implements ServiceCont
 	public ResponseEntity serviceCustomerWrite(MultipartHttpServletRequest mpRequest,
 			ServiceCustomerVO serviceCustomerVO) throws Exception {
 		
-
 		String message = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");

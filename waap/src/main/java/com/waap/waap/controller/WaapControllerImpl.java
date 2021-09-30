@@ -41,8 +41,6 @@ public class WaapControllerImpl extends BaseController implements WaapController
 		
 		ModelAndView mav = new ModelAndView((String)request.getAttribute("viewName"));
 
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-
 		if (proVO.getPro_div_code() == 0) {
 			
 			proVO.setPro_div_code(1);
@@ -52,6 +50,10 @@ public class WaapControllerImpl extends BaseController implements WaapController
 			
 			start_endMap.put("start_day", "2021-01-01");
 			start_endMap.put("end_day", "2021-01-01");
+			
+			mav.addObject("pro_area", proVO.getPro_area());
+			mav.addObject("pro_div_code", proVO.getPro_div_code());
+			mav.addObject("weather_condition", "기온");
 			
 		} else {
 			
@@ -75,14 +77,18 @@ public class WaapControllerImpl extends BaseController implements WaapController
 
 			start_endMap.put("end_day", end_day);
 			
-			
+			mav.addObject("pro_area", proVO.getPro_area());
+			mav.addObject("pro_div_code", proVO.getPro_div_code());
+			mav.addObject("weather_condition", (String)request.getParameter("weather_condition"));
+
 		}
 
-
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
 		resultMap = waapService.priceView(proVO, weatherVO, start_endMap);
 
 		mav.addObject("resultMap", resultMap);
-
+		
 		return mav;
 	}
 
@@ -155,17 +161,17 @@ public class WaapControllerImpl extends BaseController implements WaapController
 			List<ProVO> proVOList = (List<ProVO>)resultMap.get("proVOList");
 			List<ProVO> proVOList2 = (List<ProVO>)resultMap2.get("proVOList");
 			
-			for(int i=0; i<proVOList.size();i++) {
-				proVOList.get(i).setTemp_updown(proVOList.get(i).getPro_aver_cost() - proVOList2.get(i).getPro_aver_cost());
+			
+			if(proVOList2.size() > 0 && proVOList.size() >0 ) {
+				for(int i=0; i<proVOList.size();i++) {
+					proVOList2.get(i).setTemp_updown(proVOList.get(i).getPro_aver_cost() - proVOList2.get(i).getPro_aver_cost());
+				}
+				
+				Collections.sort(proVOList2, Collections.reverseOrder());
 			}
 			
-			Collections.sort(proVOList, Collections.reverseOrder());
 			
-			
-			
-			
-			
-			resultMap.put("proVOList", proVOList);
+			resultMap.put("proVOList", proVOList2);
 			
 			
 		}

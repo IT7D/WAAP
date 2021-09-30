@@ -10,7 +10,7 @@ public class ViewNameInterceptor extends  HandlerInterceptorAdapter{
 	   @Override
 	   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
 		   try {
-
+			   	
 				  String viewName = getViewName(request);
 				  request.setAttribute("viewName", viewName);
 

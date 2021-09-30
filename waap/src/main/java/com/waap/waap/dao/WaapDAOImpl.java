@@ -1,6 +1,7 @@
 package com.waap.waap.dao;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,16 +38,28 @@ public class WaapDAOImpl implements WaapDAO{
 	@Override
 	public List<ProVO> proView(ProVO proVO, @RequestParam Map<String, String> start_endMap) throws DataAccessException {
 		
-		
-		
 		Map<String, Object> proViewMap = new HashMap<String, Object>();
 		
-		proViewMap.put("pro_div_code", proVO.getPro_div_code());
-		proViewMap.put("pro_area", proVO.getPro_area());
-		proViewMap.put("start_day", Date.valueOf(start_endMap.get("start_day")));
-		proViewMap.put("end_day", Date.valueOf(start_endMap.get("end_day")));
+		List<ProVO> proVOList = new ArrayList<ProVO>();
 		
-		List<ProVO> proVOList = sqlSession.selectList("mapper.waap.proView", proViewMap);
+		try {
+			
+			
+			proViewMap.put("pro_div_code", proVO.getPro_div_code());
+			proViewMap.put("pro_area", proVO.getPro_area());
+			proViewMap.put("start_day", Date.valueOf(start_endMap.get("start_day")));
+			proViewMap.put("end_day", Date.valueOf(start_endMap.get("end_day")));
+			
+		    proVOList = sqlSession.selectList("mapper.waap.proView", proViewMap);
+			
+			
+		}catch(Exception e){
+			System.out.println("예외처리");
+			System.out.println("예외처리");
+			System.out.println("예외처리");
+			System.out.println("예외처리");
+			System.out.println("예외처리");
+		}
 		
 		return proVOList;
 	}
@@ -55,3 +68,4 @@ public class WaapDAOImpl implements WaapDAO{
 	
 	
 }
+

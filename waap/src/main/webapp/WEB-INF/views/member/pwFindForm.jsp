@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"
-	 isELIgnored="false" %>
+	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html>
@@ -57,7 +56,7 @@ function lastCheck(){
 function lastSubmit(){
 	alert("비밀번호는 " + member_pw + "입니다.")
 	
-	location.href= "${contextPath}/main/main.do";
+	location.href= "${contextPath}/member/loginForm.do";
 	
 }
 
@@ -68,41 +67,82 @@ function lastSubmit(){
 <title>Insert title here</title>
 </head>
 <body>
-	
-<h1>비밀번호 찾기 페이지</h1>
-	
-	<form action="" method="post">
-		<TABLE>
-			<TBODY>
-				<TR>
-					<TD class="">아이디</TD>
-					<TD><input id="member_id" name="" type="text" size="20" /></TD>
-				</TR>
-				<TR>
-					<TD class="">E-mail</TD>
-					<TD><input id="email1" type="text" size="20" /></TD>
-					<TD>@</TD>
-					<TD><input id="email2" type="email" size="20" /></TD>
-					<TD><button type="button" onclick=emailCheck()>인증키 전송</button>
-				</TR>
-				<TR>
-					<TD class="">인증번호 확인</TD>
-					<TD class=""><input type="text" id="checkNum" placeholder="인증번호 입력"></TD>
-					<TD><button type="button" onclick=lastCheck()>확인</button></TD>
-				</TR>
-			</TBODY>
-		
-		
-		</TABLE>
-		<button type="button" id="submit_btn" onclick=lastSubmit() disabled>비밀번호 찾기</button>
-		<button type="button" onclick="location.href='${contextPath}/main/main.do'">취소</button>
-			
-				
-		
-		
-	</form>
-	
 
+
+
+
+
+	<div class="container">
+		<h2 class="text-center mt-5 mb-4 font-weight-bold">비밀번호 찾기</h2>
+
+
+
+		<form id="form1" action="" method="post">
+			<div class="col-md-4 container border rounded">
+				<div class="form-group mt-3">
+					<label for="exampleInputId">아이디</label> <input type="text"
+						class="form-control" id="member_id" name=""
+						aria-describedby="emailHelp" />
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputPassword1">E-Mail</label>
+					<div class="form-row">
+						<div class="col-6">
+							<input type="email" class="form-control" id="email1" />
+						</div>
+						<div class="col-1 d-flex align-self-center">@</div>
+						<div class="col-5">
+							<input type="email" class="form-control" id="email2" />
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group ">
+					<div class="form-row ">
+						<div class="col-6">
+							<input type="email" class="form-control" id="checkNum"
+								placeholder="인증번호 입력" />
+						</div>
+						<div class="col-2 d-flex align-self-center">
+							<button type="button"
+								class="btn btn btn-secondary btn-sm text-white"
+								onclick=lastCheck()>확인</button>
+						</div>
+						<div class="col-4 d-flex align-self-center">
+							<button type="button" onclick=emailCheck()
+								class="btn btn-outline-info btn-sm">인증키 전송</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="d-flex justify-content-center btn-group-lg">
+
+					<button type="button" id="submit_btn"
+						class="btn btn btn-success text-white mt-4 mb-1 col-12"
+						onclick=lastSubmit() disabled>비밀번호 찾기</button>
+
+				</div>
+
+				<div class="col-12 px-2">
+					<div class="d-flex justify-content-center my-3">
+						<button type="button"
+							onclick="location.href='${contextPath}/member/idFindForm.do'"
+							class="btn btn-outline-secondary btn-sm col-4 mr-2">로그인</button>
+						<button type="button"
+							class="btn btn-outline-secondary btn-sm col-4 mr-2"
+							onclick="location.href='${contextPath}/member/idFindForm.do'">아이디
+							찾기</button>
+						<button type="button"
+							class="btn btn-outline-secondary btn-sm col-4"
+							onclick="location.href='${contextPath}/member/memberForm.do'">회원가입</button>
+
+
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 
 </body>
 </html>
