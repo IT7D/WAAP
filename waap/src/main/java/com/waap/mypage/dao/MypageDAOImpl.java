@@ -23,11 +23,6 @@ public class MypageDAOImpl implements MypageDAO {
 	// 마이페이지 정보 조회
 	@Override
 	public List<MemberVO> list(MemberVO vo) throws Exception {
-		
-		if(vo.getMember_id() == "admin") {
-			
-		}
-		
 		return sqlSession.selectList("mapper.member.list", vo);
 	}
 	

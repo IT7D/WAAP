@@ -121,7 +121,7 @@
             <tbody>
               <tr>
               <td colspan="12" style="height: 350px">
-                <textarea id="com_content" name="com_content" class="chk form-control" style="border:none;  resize: none" spellcheck="false" placeholder="내용을 입력하세요.">${update.com_content}</textarea>
+                <textarea id="com_content" name="com_content" class="chk form-control" rows="20" style="border:none; resize:none" placeholder="내용을 입력하세요.">${update.com_content}</textarea>
               </td>
             </tr>
             <tr>

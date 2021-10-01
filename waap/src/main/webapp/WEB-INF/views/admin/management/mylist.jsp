@@ -77,37 +77,9 @@
     </div>
     
     <!-- 창 번호 끝 -->
-    <!-- 검색창 시작 -->
-    <form class="form-inline my-0; d-flex justify-content-center">
-      <div class="row">
-        <div class="col-xs-6">
-          <select name="searchType" class="form-control">
-            <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>검색조건</option>
-              <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
-            <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-            <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-            <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-          </select>
-        </div>
-        <div class="col-xs-6">
-          <div class="input-group">
-						<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
-					<span class="input-group-btn">
-						<button id="searchBtn" type="button" class="btn btn-outline-secondary">검색</button>
-					</span>
-			     </div>
-        </div>
-      </div>
-    </form>
+   
 
-    <script>
-      $(function(){
-         $('#searchBtn').click(function() {
-                  self.location = "${contextPath}/admin/management/mylist.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val())+ "&member_id=" + "${member_id}";
-                });
-           });   
-    </script>
-    <!-- 검색창 끝 -->
+   
 
   </body>
 </html>

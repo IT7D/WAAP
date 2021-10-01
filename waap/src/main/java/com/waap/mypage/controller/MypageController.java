@@ -1,21 +1,18 @@
 package com.waap.mypage.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.waap.common.base.PageMaker;
 import com.waap.common.base.SearchCriteria;
-import com.waap.community.vo.CommunityVO;
 import com.waap.member.vo.MemberVO;
 import com.waap.mypage.service.MypageService;
 
@@ -27,7 +24,7 @@ public class MypageController {
 	
 	//마이페이지 정보 조회
 	@RequestMapping(value="/list.do",method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView list(MemberVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView list(MemberVO vo, HttpServletRequest request) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
@@ -106,7 +103,7 @@ public class MypageController {
 	public ModelAndView mylist(SearchCriteria scri, HttpSession session, HttpServletRequest request) throws Exception {
 		
 		MemberVO memberInfo = (MemberVO) session.getAttribute("memberInfo");
-
+		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
@@ -116,7 +113,6 @@ public class MypageController {
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.mylistCount(memberInfo.getMember_id(), scri));
 		mav.addObject("pageMaker", pageMaker);
-		
 		
 		return mav;
 	}

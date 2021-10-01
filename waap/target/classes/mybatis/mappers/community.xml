@@ -220,23 +220,30 @@
 					  	  ROW_NUMBER() OVER(ORDER BY COM_NO DESC) AS rNUM
 			   		FROM COM_WRITE
 			   		WHERE MEMBER_ID = #{member_id}
-						<include refid="search"></include> 	  				
+						<include refid="mysearch"></include> 	  				
 				)
 		WHERE rNUM BETWEEN #{rowStart} AND #{rowEnd}
 			ORDER BY COM_NO DESC
-	</select>
+	 </select>
 	
 	 
 	<select id="mylistCount" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(COM_NO)
 		FROM COM_WRITE
 		WHERE MEMBER_ID = #{member_id}		
-			<include refid="search"></include>
+			<include refid="mysearch"></include>
 	<![CDATA[	    
 			and COM_NO > 0
 	]]>		   
 	</select>
 	
-	
+	<sql id="mysearch">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND COM_TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND COM_CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND MEMBER_ID LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (COM_TITLE LIKE '%' || #{keyword} || '%') or (COM_CONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
 	
 </mapper>

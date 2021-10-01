@@ -53,7 +53,7 @@ public class AdminNoticeController {
 	
 	// 공지사항 목록 조회
 	@RequestMapping(value="/list.do",method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView list(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView list(SearchCriteria scri, HttpServletRequest request) throws Exception{
 		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
@@ -70,8 +70,7 @@ public class AdminNoticeController {
 	
 	// 공지사항 조회
 		@RequestMapping(value="/readView.do", method={RequestMethod.POST,RequestMethod.GET})
-		public ModelAndView read(@RequestParam("notice_no") int notice_no, NoticeVO noticeVO, SearchCriteria scri,  
-				HttpServletRequest request, HttpServletResponse response) throws Exception{
+		public ModelAndView read(@RequestParam("notice_no") int notice_no, NoticeVO noticeVO, SearchCriteria scri, HttpServletRequest request) throws Exception{
 			
 			//조회수 증가
 			service.viewsCount(notice_no);
@@ -92,8 +91,7 @@ public class AdminNoticeController {
 		
 	// 공지사항 수정뷰
 	@RequestMapping(value="/updateView.do", method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView updateView(@ModelAttribute("scri") NoticeVO noticeVO, SearchCriteria scri,
-			     HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView updateView(@ModelAttribute("scri") NoticeVO noticeVO, SearchCriteria scri, HttpServletRequest request) throws Exception {
 			
 		String viewName = (String)request.getAttribute("viewName");
 			
@@ -115,6 +113,7 @@ public class AdminNoticeController {
 						 @RequestParam(value="fileNoDel[]") String[] files,
 						 @RequestParam(value="fileNameDel[]") String[] fileNames,
 						 MultipartHttpServletRequest mpRequest) throws Exception {
+		
 		service.update(noticeVO, files, fileNames, mpRequest);
 			
 		rttr.addAttribute("page", scri.getPage());

@@ -62,7 +62,8 @@ public class CommunityController {
 	
 	// 커뮤니티 목록 조회
 	@RequestMapping(value="/list.do",method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView list(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView list(SearchCriteria scri, HttpServletRequest request) throws Exception{
+		
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
@@ -78,7 +79,7 @@ public class CommunityController {
 	
 	// 커뮤니티 최신글 목록 조회
 	@RequestMapping(value="/list_last.do",method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView list_last(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView list_last(SearchCriteria scri, HttpServletRequest request) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
@@ -94,7 +95,7 @@ public class CommunityController {
 	
 	// 커뮤니티 인기글 목록 조회
 	@RequestMapping(value="/list_count.do",method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView list_count(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView list_count(SearchCriteria scri, HttpServletRequest request) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
@@ -111,7 +112,7 @@ public class CommunityController {
 	
 	// 커뮤니티 조회
 	@RequestMapping(value="/readView.do", method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView read(@RequestParam("com_no") int com_no, CommunityVO communityVO, SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView read(@RequestParam("com_no") int com_no, CommunityVO communityVO, SearchCriteria scri, HttpServletRequest request) throws Exception{
 		
 		//조회수 증가
 		service.viewsCount(com_no);
@@ -140,8 +141,7 @@ public class CommunityController {
 	
 	// 커뮤니티 수정뷰
 	@RequestMapping(value="/updateView.do", method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView updateView(@ModelAttribute("scri") CommunityVO communityVO, SearchCriteria scri,
-			     HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView updateView(@ModelAttribute("scri") CommunityVO communityVO, SearchCriteria scri, HttpServletRequest request) throws Exception {
 			
 		String viewName = (String)request.getAttribute("viewName");
 			
@@ -170,7 +170,7 @@ public class CommunityController {
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());
 		rttr.addAttribute("searchType", scri.getSearchType());
 		rttr.addAttribute("keyword", scri.getKeyword());
-			
+		
 		return "redirect:/community/readView.do";
 			
 	}

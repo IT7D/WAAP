@@ -31,7 +31,7 @@ public class NoticeController {
 
 	// 공지사항 목록 조회
 	@RequestMapping(value="/list.do",method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView list(SearchCriteria scri, HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView list(SearchCriteria scri, HttpServletRequest request) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
@@ -47,8 +47,7 @@ public class NoticeController {
 	
 	// 공지사항 조회
 		@RequestMapping(value="/readView.do", method={RequestMethod.POST,RequestMethod.GET})
-		public ModelAndView read(@RequestParam("notice_no") int notice_no, NoticeVO noticeVO, SearchCriteria scri,  
-				HttpServletRequest request, HttpServletResponse response) throws Exception{
+		public ModelAndView read(@RequestParam("notice_no") int notice_no, NoticeVO noticeVO, SearchCriteria scri, HttpServletRequest request) throws Exception{
 			
 			//조회수 증가
 			service.viewsCount(notice_no);

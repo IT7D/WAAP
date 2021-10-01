@@ -92,7 +92,9 @@
               </tr>
             </thead>
             <tbody>
-              <td colspan="12" style="height: 350px">${read.notice_cont}</td>
+             <tr>
+              	<td colspan="12" style="height: 350px"><textarea rows="20" style="border:none; resize: none; background:transparent" class="chk form-control" readonly>${read.notice_cont}</textarea></td>
+             </tr>
             </tbody>
             <tr>
               <th scope="col" class="col-1 bg-light text-center align-middle" style="font-size: 12px;">첨부파일

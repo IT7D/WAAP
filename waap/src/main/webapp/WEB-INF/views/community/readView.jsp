@@ -131,7 +131,7 @@
             </thead>
             <tbody>
               <tr>
-              <td colspan="12" style="height: 350px">${read.com_content}</td>
+              <td colspan="12" style="height: 350px"><textarea id="com_content" name="com_content"  rows="20"  class="chk form-control" style="border:none; background: transparent; resize:none"  readonly>${read.com_content}</textarea></td>
             </tr>
             <tr>
               <th scope="col" class="col-1 bg-light text-center align-middle" style="font-size: 12px;" >첨부파일
