@@ -17,7 +17,6 @@
 	function downloadCSV() {
 		const fileName = "rankView.csv";
 		const csv = convertNodeToCsvString();
-
 		var link = document.createElement("a");
 		var blob = new Blob([ "\uFEFF" + csv ], {
 			type : 'text/;charset=utf-8'
@@ -29,11 +28,9 @@
 		});
 		link.click();
 	}
-
 	function convertNodeToCsvString() {
 		var result = "";
 		var node = $("#div_table_title").children();
-
 		$(node).each(function(index, value) {
 			result += $(value).find("#head_pro_rank").text() + ",";
 			result += $(value).find("#head_pro_sub_code").text() + ",";
@@ -41,17 +38,14 @@
 			result += $(value).find("#head_pro_unit").text() + ",";
 			result += $(value).find("#head_pro_aver_cost").text() + ",\n";
 		})
-
 		var itemNodes = $("#div_table_list").children();
 		$(itemNodes).each(function(index, value) {
-
 			result += $(value).find(".xData1").text() + ",";
 			result += $(value).find(".xData2").text() + ",";
 			result += $(value).find(".xData3").text() + ",";
 			result += $(value).find(".xData4").text() + ",";
 			result += $(value).find(".xData5").text() + "\n";
 		})
-
 		return result;
 	}
 </script>
@@ -60,34 +54,27 @@
 	$(document).ready(function() {
 		setDateBox();
 	});
-
 	// select box 연도 , 월 표시
 	function setDateBox() {
 		var dt = new Date();
 		var com_year = dt.getFullYear();
 		var com_month = dt.getMonth() + 1;
 		var com_day = dt.getDate();
-
 		for (var y = com_year - 1; y <= com_year; y++) {
 			$("#start_day_year").append(
 					"<option value='" + y + "'>" + y + "</option>");
 			$("#end_day_year").append(
 					"<option value='" + y + "'>" + y + "</option>");
 		}
-
 		// 월 뿌려주기(1월부터 12월)
-
 		for (var i = 1; i <= 12; i++) {
-
 			$("#start_day_month").append(
 					"<option value='" + i + "'>" + i + "</option>")
 		}
-
 		if (com_month != 1) {
 			for (var i = 1; i <= com_month; i++) {
 				$("#end_day_month").append(
 						"<option value='" + i + "'>" + i + "</option>");
-
 			}
 		} else {
 			for (var i = 1; i <= com_month; i++) {
@@ -97,11 +84,9 @@
 						"<option value='" + i + "'>" + i + "</option>");
 			}
 		}
-
 		$("#end_day_month").append(
 				"<option value='" + ""  + "'>" + "&nbsp;&nbsp;&nbsp;&nbsp;"
 						+ "</option>");
-
 		// 일 뿌려주기(1일부터 31일)
 		for (var i = 1; i <= 30; i++) {
 			$("#start_day_day").append(
@@ -109,28 +94,24 @@
 			$("#end_day_day").append(
 					"<option value='" + i + "'>" + i + "</option>");
 		}
-
 		end_year = com_year - 1
-
 		$("#start_day_year > option[value=" + end_year + "]").attr("selected",
 				"true");
 		$("#start_day_month > option[value=" + com_month + "]").attr(
 				"selected", "true");
 		$("#start_day_day > option[value=" + com_day + "]").attr("selected",
 				"true");
-
 		$("#end_day_year > option[value=" + com_year + "]").attr("selected",
 				"true");
 		$("#end_day_month > option[value=" + com_month + "]").attr(
 				"selected", "true");
 		$("#end_day_day > option[value=" + com_day + "]").attr("selected",
 				"true");
-
 	}
 </script>
 
 <script>
-	var goRankView(){
+	function goRankView() {
 		location.href = "${contextPath }/waap/rankView.do";
 	}
 </script>
@@ -384,24 +365,15 @@
 					$("#1003").children().eq(4).text(),
 					$("#1004").children().eq(4).text() ]
 			}, {
-				type:'line',
+				type:'bar',
 				label : '일일 등락 가격',
-				yAxisID : 'B',
-				data : [ $("#1000").children().eq(2).text(),
+				data : [ $("#1000").children().eq(2).attr("id")-10000,
 					$("#1001").children().eq(2).attr("id") -10000,
 					$("#1002").children().eq(2).attr("id") -10000,
 					$("#1003").children().eq(2).attr("id") -10000,
 					$("#1004").children().eq(2).attr("id") -10000],
 				lineTension : 0.3,
-				fill : false,
-				borderColor : 'lightblue',
-				backgroundColor : 'transparent',
-				pointBorderColor : 'lightblue',
-				pointBackgroundColor : 'lightgreen',
-				pointRadius : 5,
-				pointHoverRadius : 15,
-				pointHitRadius : 30,
-				pointBorderWidth : 2
+				backgroundColor : 'rgb(255, 153, 153)'
 			} ]
 		},
 		options : {
@@ -410,19 +382,26 @@
 					id : 'A',
 					type : 'linear',
 					position : 'left',
+					ticks :{
+						suggestedMin:-10000,
+						beginAtZero:true
+					}
 				}, {
-					id : 'B',
+					id : 'A',
 					type : 'linear',
-					position : 'right'
+					position : 'right',
+					ticks : {
+						
+						beginAtZero: true
+					}
 				} ]
 			},
 			annotation : {
 				annotations : [ {
-					type : 'line',
+					type : 'bar',
 					mode : 'horizontal',
 					scaleID : 'y-axis-0',
 					value : 32,
-					borderColor : 'rgb(75, 0, 0)',
 					borderWidth : 4,
 					label : {
 						enabled : false,
@@ -432,7 +411,6 @@
 			}
 		}
 	});
-
 </script>
 
 
