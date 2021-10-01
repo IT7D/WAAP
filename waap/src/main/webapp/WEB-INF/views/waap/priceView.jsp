@@ -11,7 +11,6 @@
 	function downloadCSV() {
 		const fileName = "priceView.csv";
 		const csv = convertNodeToCsvString();
-
 		var link = document.createElement("a");
 		var blob = new Blob([ "\uFEFF" + csv ], {
 			type : 'text/;charset=utf-8'
@@ -23,11 +22,9 @@
 		});
 		link.click();
 	}
-
 	function convertNodeToCsvString() {
 		var result = "";
 		var node = $("#result_table_thead").children();
-
 		$(node).each(function(index, value) {
 			result += $(value).find("#head_pro_period").text() + ",";
 			result += $(value).find("#head_pro_sub_name").text() + ",";
@@ -35,11 +32,10 @@
 			result += $(value).find("#head_weather_aver_tem").text() + ",";
 			result += $(value).find("#head_weather_high_tem").text() + ",";
 			result += $(value).find("#head_weather_low_tem").text() + ",";
-			result += $(value).find("#head_weather_precipitation").text() + ",";
 			result += $(value).find("#head_weather_aver_wind").text() + ",";
-			result += $(value).find("#head_weather_high_wind").text() + ",\n";
+			result += $(value).find("#head_weather_high_wind").text() + ",";
+			result += $(value).find("#head_weather_precipitation").text() + ",\n";
 		})
-
 		var itemNodes = $("#result_table_tbody").children();
 		$(itemNodes).each(function(index, value) {
 			result += $(value).find("#body_pro_period").text() + ",";
@@ -48,11 +44,10 @@
 			result += $(value).find("#body_weather_aver_tem").text() + ",";
 			result += $(value).find("#body_weather_high_tem").text() + ",";
 			result += $(value).find("#body_weather_low_tem").text() + ",";
-			result += $(value).find("#body_weather_precipitation").text() + ",";
 			result += $(value).find("#body_weather_aver_wind").text() + ",";
-			result += $(value).find("#body_weather_high_wind").text() + ",\n";
+			result += $(value).find("#body_weather_high_wind").text() + ",";
+			result += $(value).find("#body_weather_precipitation").text() + ",\n";
 		})
-
 		return result;
 	}
 </script>
@@ -63,7 +58,6 @@
 	$(document).ready(function() {
 		setDateBox();
 	});
-
 	
 	
 	// 날짜 세팅
@@ -73,31 +67,22 @@
 		var com_year = dt.getFullYear();
 		var com_month = dt.getMonth() + 1;
 		var com_day = dt.getDate();
-
 		for (var y = com_year - 1; y <= com_year; y++) {
 			$("#start_day_year").append(
 					"<option value='" + y + "'>" + y + "</option>");
 			$("#end_day_year").append(
 					"<option value='" + y + "'>" + y + "</option>");
 		}
-
 		// 월 뿌려주기(1월부터 12월)
-
 		for (var i = 1; i <= 12; i++) {
-
 			$("#start_day_month").append(
 					"<option value='" + i + "'>" + i + "</option>")
 		}
-
-		for (var i = 1; i <= com_month; i++) {
+		for (var i = 1; i <= 12; i++) {
 			$("#end_day_month").append(
 					"<option value='" + i + "'>" + i + "</option>");
 		}
-
-		$("#end_day_month").append(
-				"<option value='" + ""  + "'>" + "&nbsp;&nbsp;&nbsp;&nbsp;"
-						+ "</option>");
-
+		
 		// 일 뿌려주기(1일부터 31일)
 		for (var i = 1; i <= 31; i++) {
 			$("#start_day_day").append(
@@ -105,23 +90,19 @@
 			$("#end_day_day").append(
 					"<option value='" + i + "'>" + i + "</option>");
 		}
-
 		end_year = com_year - 1
-
 		$("#start_day_year > option[value=" + end_year + "]").attr("selected",
 				"true");
 		$("#start_day_month > option[value=" + com_month + "]").attr(
 				"selected", "true");
 		$("#start_day_day > option[value=" + com_day + "]").attr("selected",
 				"true");
-
 		$("#end_day_year > option[value=" + com_year + "]").attr("selected",
 				"true");
 		$("#end_day_month > option[value=" + com_month + "]").attr("selected",
 				"true");
 		$("#end_day_day > option[value=" + com_day + "]").attr("selected",
 				"true");
-
 	}
 	
 	
@@ -294,7 +275,7 @@
 										<td id="body_weather_low_tem">${weatherVO.weather_low_tem }</td>
 										<td id="body_weather_percipitation">${weatherVO.weather_precipitation }</td>
 										<td id="body_weather_aver_wind">${weatherVO.weather_aver_wind }</td>
-										<td id="body_weather_aver_wind">${weatherVO.weather_high_wind }</td>
+										<td id="body_weather_high_wind">${weatherVO.weather_high_wind }</td>
 									</c:if>
 								</c:forEach>
 
@@ -327,7 +308,6 @@
 <script>
 	var result_table_count = $('#result_table_tbody tr').length;
 	var weather_condition = "${weather_condition}";
-
 	
 	var weather_dataSet = new Array(); // 최종 데이터 셋
 	
@@ -347,11 +327,8 @@
 	var weather_statusMap = new Map(); //
 	
 	var weather_label;
-
-
 	
 	var bubble_color;
-
 	function www(x){
 		if (weather_condition == "기온"){
 			 return $('#result_table_tbody').children().eq(x).children().eq(3).text()
@@ -363,7 +340,6 @@
 	}
 	
 	 
-		 
 		 
 		 
 		 
@@ -451,7 +427,6 @@
 				
 				
 				
-
 			}
 			
 			
@@ -554,7 +529,6 @@
 			}
 			
 			
-
 		}
 	
 	
@@ -585,22 +559,14 @@
 				
 				
 	}
-
 	 
-
 	/* 차트 부분 */
-
 	var chart1 = new Chart(document.getElementById("bubble-chart"), {
 		type : 'bubble',
 		data : {
 			datasets : weather_dataSet
 		},
 		options : {
-
 		}
 	});
 </script>
-
-
-
-
