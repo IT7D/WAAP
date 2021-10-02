@@ -51,7 +51,7 @@
 					alert("비밀번호를 입력해주세요.");
 					$("#member_pw").focus();
 					return false;
-			}
+				
 			});
 			
 			

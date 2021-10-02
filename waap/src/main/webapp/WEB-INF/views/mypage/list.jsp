@@ -29,7 +29,7 @@
 						function(data) {
 						
 						if(data==0) {
-							alert("패스워드가 틀렸습니다.");
+							alert("비밀번호가 틀렸습니다.");
 							return;
 						}else{
 							if(confirm("수정하시겠습니까?")){

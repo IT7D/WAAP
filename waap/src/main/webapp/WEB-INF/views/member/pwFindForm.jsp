@@ -7,11 +7,8 @@
 <html>
 <head>
 <script>
-
-
 var codeNum = "";
 var member_id = "";
-
 function emailCheck(){
 	
 	var email1 = document.getElementById('email1').value;
@@ -27,7 +24,6 @@ function emailCheck(){
 			if(request.message == "없는 이메일 입니다."){
 				alert(request.message)	
 			}else{
-
 				alert(request.message);
 				codeNum = request.code;
 				member_pw = request.member_pw;
@@ -40,8 +36,6 @@ function emailCheck(){
 		
 	})
 }
-
-
 function lastCheck(){
 	if(document.getElementById('checkNum').value == codeNum){
 		alert("인증번호가 일치합니다!");
@@ -51,16 +45,12 @@ function lastCheck(){
 	}
 	 
 }
-
-
 function lastSubmit(){
 	alert("비밀번호는 " + member_pw + "입니다.")
 	
 	location.href= "${contextPath}/member/loginForm.do";
 	
 }
-
-
 </script>
 
 <meta charset="EUC-KR">
@@ -127,7 +117,7 @@ function lastSubmit(){
 				<div class="col-12 px-2">
 					<div class="d-flex justify-content-center my-3">
 						<button type="button"
-							onclick="location.href='${contextPath}/member/idFindForm.do'"
+							onclick="location.href='${contextPath}/member/loginForm.do'"
 							class="btn btn-outline-secondary btn-sm col-4 mr-2">로그인</button>
 						<button type="button"
 							class="btn btn-outline-secondary btn-sm col-4 mr-2"

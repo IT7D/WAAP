@@ -70,23 +70,11 @@
 		for (var i = 1; i <= 12; i++) {
 			$("#start_day_month").append(
 					"<option value='" + i + "'>" + i + "</option>")
+					
+			$("#end_day_month").append(
+					"<option value='" + i + "'>" + i + "</option>")
 		}
-		if (com_month != 1) {
-			for (var i = 1; i <= com_month; i++) {
-				$("#end_day_month").append(
-						"<option value='" + i + "'>" + i + "</option>");
-			}
-		} else {
-			for (var i = 1; i <= com_month; i++) {
-				$("#end_day_month").append(
-						"<option value='" + i + "'>" + i + "</option>");
-				$("#end_day_month").append(
-						"<option value='" + i + "'>" + i + "</option>");
-			}
-		}
-		$("#end_day_month").append(
-				"<option value='" + ""  + "'>" + "&nbsp;&nbsp;&nbsp;&nbsp;"
-						+ "</option>");
+		
 		// 일 뿌려주기(1일부터 31일)
 		for (var i = 1; i <= 30; i++) {
 			$("#start_day_day").append(

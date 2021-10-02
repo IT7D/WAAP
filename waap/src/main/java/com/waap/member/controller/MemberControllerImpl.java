@@ -23,7 +23,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -170,7 +169,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
         MemberVO memberVO = memberService.emailAndNameCheck(member_name, member_email, member_email2); 
         
         if(memberVO == null) {
-        	resultMap.put("message", "없는 이메일 입니다.");
+        	resultMap.put("message", "없는 이메일이거나 없는 아이디 입니다.");
         	return resultMap;
         }else{
         	

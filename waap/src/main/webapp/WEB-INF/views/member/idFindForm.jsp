@@ -10,13 +10,10 @@
 <script>
 	var codeNum = "";
 	var member_id = "";
-
 	function emailCheck() {
-
 		var email1 = document.getElementById('email1').value;
 		var email2 = "@" + document.getElementById('email2').value;
 		var member_name = document.getElementById('member_name').value;
-
 		$.ajax({
 			async : false,
 			type : 'POST',
@@ -27,24 +24,20 @@
 				"member_name" : member_name
 			},
 			success : function(request) {
-				if (request.message == "없는 이메일 입니다.") {
+				if (request.message == "없는 이메일이거나 없는 아이디 입니다.") {
 					alert(request.message)
 				} else {
-
 					alert(request.message);
 					codeNum = request.code;
 					member_id = request.member_id;
 				}
-
 			},
 			error : function(request, error) {
 				alert("code:" + request.status + "\n" + "message: "
 						+ request.responseText + "\n" + "error : " + error)
 			}
-
 		})
 	}
-
 	function lastCheck() {
 		if (document.getElementById('checkNum').value == codeNum) {
 			alert("인증번호가 일치합니다!");
@@ -52,14 +45,10 @@
 		} else {
 			alert("인증번호를 다시 확인하세요");
 		}
-
 	}
-
 	function lastSubmit() {
 		alert("아이디는 " + member_id + "입니다.")
-
 		location.href = "${contextPath}/member/loginForm.do";
-
 	}
 </script>
 
@@ -126,7 +115,7 @@
 				<div class="col-12 px-2">
 					<div class="d-flex justify-content-center my-3">
 						<button type="button"
-							onclick="location.href='${contextPath}/member/idFindForm.do'"
+							onclick="location.href='${contextPath}/member/loginForm.do'"
 							class="btn btn-outline-secondary btn-sm col-4 mr-2">로그인</button>
 						<button type="button"
 							class="btn btn-outline-secondary btn-sm col-4 mr-2"
