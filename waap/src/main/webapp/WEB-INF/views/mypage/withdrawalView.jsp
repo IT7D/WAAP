@@ -4,9 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
-
-<c:set var="contextPath" value="${pageContext.request.contextPath }" />
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -23,7 +20,6 @@
         height: 400px;
         top: 30%;
         border-radius: 15px;
-
       }
     #btn1{
         
@@ -36,7 +32,6 @@
         height: 35px;
         top: 100px;
     }
-
     </style>
     <title>회원탈퇴</title>
 	<script type="text/javascript">
@@ -45,13 +40,12 @@
 			$(".return_btn").on("click", function(){
 				location.href="${contextPath}/mypage/list.do";			
 			})
-
 			$(".withdrawal_btn").on("click", function(){
 				if($("#member_pw").val()=="" || $("#member_pw2").val()==""){
 					alert("비밀번호를 입력해주세요.");
 					$("#member_pw").focus();
 					return false;
-				
+			}
 			});
 			
 			
