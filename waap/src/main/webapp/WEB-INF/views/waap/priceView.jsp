@@ -333,9 +333,9 @@
 		if (weather_condition == "기온"){
 			 return $('#result_table_tbody').children().eq(x).children().eq(3).text()
 		 }else if(weather_condition == "강수량"){
-			 return $('#result_table_tbody').children().eq(x).children().eq(3).text()
+			 return $('#result_table_tbody').children().eq(x).children().eq(6).text()
 		 }else if(weather_condition == "풍속"){
-			 return $('#result_table_tbody').children().eq(x).children().eq(3).text()
+			 return $('#result_table_tbody').children().eq(x).children().eq(7).text()
 		 }
 	}
 	
